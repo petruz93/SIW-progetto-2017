@@ -40,7 +40,13 @@
 		</nav>
 		<div>
 			<ul th:each = "autore : ${autori}">
-					<li> <a href = "/autore?id=${autore.id}" th:text = "${autore.nome} ${autore.cognome}"></a> </li>
+				<li>
+					<a href = "/autore?id=${autore.id}" th:text = "${autore.nome} ${autore.cognome}"></a> 
+					<form action = "#" th:action = "@{/autore}" th:object = "${autore}" method = "post">
+						<input type = "hidden" name = "id" value = "${autore.id}">
+						<input type = "submit" name = "comando" value = "cancella">
+					</form>
+				</li>
 			</ul>
 		</div>
 		<footer>

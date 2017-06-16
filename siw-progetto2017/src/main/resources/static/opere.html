@@ -40,7 +40,13 @@
 		</nav>
 		<div>
 			<ul th:each = "opera : ${opere}">
-					<li> <a href = "/opera?id=${opera.id}" th:text = "${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})"></a> </li>
+				<li>
+					<a href = "/opera?id=${opera.id}" th:text = "${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})"></a>
+					<form action = "#" th:action = "@{/opera}" th:object = "${opera}" method = "post">
+						<input type = "hidden" name = "id" value = "${opera.id}">
+						<input type = "submit" name = "comando" value = "cancella">
+					</form>
+				</li>
 			</ul>
 		</div>
 		<footer>
