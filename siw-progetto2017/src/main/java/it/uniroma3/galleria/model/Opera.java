@@ -2,6 +2,7 @@ package it.uniroma3.galleria.model;
 
 import java.awt.Dimension;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ public class Opera {
 	
 	@NotNull
 	@Size(min=1)
+	@Column(unique = true)
 	private String titolo;
 	
 	@NotNull

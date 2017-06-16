@@ -2,6 +2,7 @@ package it.uniroma3.galleria.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class Stanza {
 	
 	@NotNull
 	@Size(min=1)
+	@Column(unique = true)
 	private String nome;
 	
 	private String descrizione;
