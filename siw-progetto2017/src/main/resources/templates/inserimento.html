@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel = "stylesheet" href = "css/galleria.css">
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+		<title> Amministrazione Galleria </title>
+	</head>
+	<body>
+		<nav class = "navbar navbar-default navbar-fixed-top">
+			<div class = "container-fluid">
+				<div class="navbar-header">
+					<button type = "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "#galleria-navbar">
+						<span class = "icon-bar"></span>
+						<span class = "icon-bar"></span>
+						<span class = "icon-bar"></span>                        
+					</button>
+					<a class = "navbar-brand" href = "index.html"> Galleria </a>
+				</div>
+				<div class = "collapse navbar-collapse" id = "galleria-navbar">
+					<ul class = "nav navbar-nav">
+						<li> <a href = "index.html"> Home </a> </li>
+						<li> <a href = "/stanza"> Stanze </a> </li>
+						<li> <a href = "/opera"> Opere </a> </li>
+						<li> <a href = "/autore"> Autori </a> </li>
+						<li> <a href = "contatti.html"> Contatti </a> </li>
+						<li> <a href = "/autore"> Inserimento </a> </li>
+					</ul>
+					<div class = "nav navbar-nav navbar-right" id = "form-container">
+						<div class = "navbar-form">
+							<button class = "form-control"> <i class = "glyphicon glyphicon-log-out"> </i> Logout amministratore </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class = "container-fluid contenitore">
+			<div class = "row">
+				<div class = "col-md-2"></div>
+				<div class = "col-md-3">
+					<form action = "#" th:action = "@{/autore}" th:object = "${autore}" method = "post">
+						<div class = "form-group">
+		                    <label> Nome* </label> <span th:if="${#fields.hasErrors('nome')}" th:text = "Errore"> Error </span>
+		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Cognome* </label>
+		                    <input class = "form-control" type = "text" th:field = "*{cognome}" placeholder = "Cognome"/>							
+						</div>
+						<div class = "form-group">
+		                    <label> Nazione* </label>
+		                    <input class = "form-control" type = "text" th:field = "*{nazione}" placeholder = "Nazione"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Data di nascita* </label>
+		                    <input class = "form-control" type = "date" th:field = "*{dataNascita}" placeholder = "Data di nascita"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Data di morte </label>
+		                    <input class = "form-control" type = "date" th:field = "*{dataMorte}" placeholder = "Data di morte"/>
+						</div>
+						<div class = "form-group form-inline">
+							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
+							<input class = "form-control" type = "reset" name = "ripristina" value = "ripristina"/>
+						</div>
+					</form>
+				</div>
+				<div class = "col-md-2"></div>
+				<div class = "col-md-3">
+					<form action = "#" th:action = "@{/opera}" th:object = "${opera}" method = "post">
+						<div class = "form-group">
+		                    <label> Titolo* </label>
+		                    <input class = "form-control" type = "text" th:field = "*{titolo}" placeholder = "Titolo"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Anno di realizzazione* </label>
+		                    <input class = "form-control" type = "number" th:field = "*{anno}" placeholder = "Anno di realizzazione"/>							
+						</div>
+						<div class = "form-group">
+		                    <label> Tecnica usata* </label>
+		                    <input class = "form-control" type = "text" th:field = "*{tecnica}" placeholder = "Tecnica usata"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Dimensioni* </label>
+		                    <div class = "input-group form-inline">
+								<input class = "form-control" type = "number" th:field = "*{dimensioni.getWidth()}" placeholder = "Altezza"/>
+								<input class = "form-control" type = "number" th:field = "*{dimensioni.getHeight()}" placeholder = "Larghezza"/>
+							</div>
+						</div>
+						<div class = "form-group">
+							<label for = "elenco-autori"> Autore* </label>
+							<select class = "form-control" id = "elenco-autori" th:each = "autore : ${autori}">
+								<option th:text = "${autore.nome} ${autore.cognome}"></option>
+							</select>
+						</div>
+						<div class = "form-group form-inline">
+							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
+							<input class = "form-control" type = "reset" name = "ripristina" value = "ripristina"/>
+						</div>
+					</form>
+				</div>
+				<div class = "col-md-2"></div>
+			</div>
+		</div>
+		<footer>
+			<div class = "container-fluid">
+				<div class = "row">
+					<div class = "col-md-2"></div>
+					<div class = "col-md-4">
+						<ul style = "list-style: none;">
+							<li> <p> Progetto giugno 2017 </p> </li>
+							<li> <p> Sistemi Informativi su Web </p> </li>
+							<li> <p> <a href = "http://informatica.ing.uniroma3.it"> <img src = "img/roma-tre-logo.png" style = "width: auto;"> </a> </p> </li>
+						</ul>
+					</div>
+					<div class = "col-md-4">
+						<ul style = "list-style: none;">
+							<li>
+								<p> Powered and designed by </p>
+							</li>
+							<li>
+								<p>
+									<a class = "undecorated-link" href = "#"> Matteo Petruzziello</a>
+									<a class = "undecorated-link" href = "https://www.facebook.com/matteo.petruzziello"> <i class = "fa fa-facebook-square"></i> </a>
+									<a class = "undecorated-link" href = "https://github.com/petruz93"> <i class = "fa fa-github-square"></i> </a>
+								</p>
+							</li>
+							<li>
+								<p>
+									<a class = "undecorated-link" href = "#"> Marco Peroni </a>
+									<a class = "undecorated-link" href = "https://www.facebook.com/QuelBelPargolo"> <i class = "fa fa-facebook-square"></i> </a>
+									<a class = "undecorated-link" href = "https://github.com/Pargolo"> <i class = "fa fa-github-square"></i> </a>
+								</p>									
+							</li>
+						</ul>
+					</div>
+					<div class = "col-md-2"></div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
