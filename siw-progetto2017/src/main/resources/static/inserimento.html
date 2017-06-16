@@ -42,7 +42,7 @@
 			<div class = "row">
 				<div class = "col-md-2"></div>
 				<div class = "col-md-3">
-					<form action = "#" th:action = "@{/customer}" th:object = "${autore}" method = "post">
+					<form action = "#" th:action = "@{/autore}" th:object = "${autore}" method = "post">
 						<div class = "form-group">
 		                    <label> Nome* </label> <span th:if="${#fields.hasErrors('nome')}" th:text = "Errore"> Error </span>
 		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
