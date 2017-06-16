@@ -6,7 +6,6 @@
 	<groupId>it.uniroma3</groupId>
 	<artifactId>galleria</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 
 	<name>galleria</name>
 	<description>Progetto per l'esame di Sistemi Informativi su Web</description>
@@ -58,6 +57,7 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 	</dependencies>
+	
 
 	<build>
 		<plugins>

@@ -20,7 +20,8 @@ public class AutoreController {
 	private AutoreService autoreService;
 	
 	@GetMapping("/autore")
-	public String showForm(Autore autore) {
+	public String showForm(Model model) {
+		model.addAttribute("autore", new Autore());
 		return "inserimento";
 	}
 	
@@ -33,9 +34,16 @@ public class AutoreController {
 		} else {
 			this.autoreService.add(autore);
 			Iterable<Autore> autori = this.autoreService.findAll();
-			model.addAttribute(autori);
+			model.addAttribute("autori", autori);
 			return "autori";
 		}
+	}
+	
+	@GetMapping("/listAutori")
+	public String mostraAutori(Model model) {
+		Iterable<Autore> autori = this.autoreService.findAll();
+		model.addAttribute("autori", autori);
+		return "autori";
 	}
 
 }
