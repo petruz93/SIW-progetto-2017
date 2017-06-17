@@ -10,40 +10,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import it.uniroma3.galleria.model.Autore;
-import it.uniroma3.galleria.service.AutoreService;
+import it.uniroma3.galleria.model.Opera;
+import it.uniroma3.galleria.service.OperaService;
 
 @Controller
-public class AutoreController {
+public class OperaController {
 	
 	@Autowired
-	private AutoreService autoreService;
+	private OperaService operaService;
 	
-	@GetMapping("/addAutore")
+	@GetMapping("/addOpera")
 	public String showForm(Model model) {
-		model.addAttribute("formAutore", true);
+		model.addAttribute("formOpera", true);
 		return "inserimento";
 	}
 	
-	@PostMapping("/addAutore")
-	public String checkAutoreInfo(@Valid @ModelAttribute Autore autore,
+	@PostMapping("/addOpera")
+	public String checkOperaInfo(@Valid @ModelAttribute Opera opera,
 									BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors())
 			return "inserimento";
 		else {
-			this.autoreService.add(autore);
-			Iterable<Autore> autori = this.autoreService.findAll();
-			model.addAttribute("autori", autori);
-			return "autori";
+			this.operaService.add(opera);
+			Iterable<Opera> opere = this.operaService.findAll();
+			model.addAttribute("opere", opere);
+			return "opere";
 		}
 	}
 	
-	@GetMapping("/listAutori")
-	public String showAllAutori(Model model) {
-		Iterable<Autore> autori = this.autoreService.findAll();
-		model.addAttribute("autori", autori);
-		return "autori";
+	@GetMapping("/listOpere")
+	public String showAllOpere(Model model) {
+		Iterable<Opera> opere = this.operaService.findAll();
+		model.addAttribute("opere", opere);
+		return "opere";
 	}
 
 }
