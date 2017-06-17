@@ -5,7 +5,7 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
 		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 		<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-		<link rel = "stylesheet" href = "css/galleria.css"/>
+		<link rel = "stylesheet" href = "css/style.css"/>
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
 		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>	
 		<title> Elenco autori </title>
@@ -26,7 +26,7 @@
 						<li> <a href = "index.html"> Home </a> </li>
 						<li> <a href = "/stanza"> Stanze </a> </li>
 						<li> <a href = "/opera"> Opere </a> </li>
-						<li> <a href = "/listAutori"> Autori </a> </li>
+						<li> <a href = "/autore"> Autori </a> </li>
 						<li> <a href = "contatti.html"> Contatti </a> </li>
 						<li> <a href = "/autore"> Inserimento </a> </li>
 					</ul>
@@ -38,24 +38,16 @@
 				</div>
 			</div>
 		</nav>
-		<div class = "container-fluid">
-			<div class = "col-md-2"></div>
-			<div class = "col-md-4" th:if = "${not #lists.isEmpty(autori)}">
-				<table th:each = "autore : ${autori}">
-					<tr>
-						<td>
-							<form action = "#" th:action = "@{/autore}" th:object = "${autore}" method = "post">
-								<input type = "hidden" name = "id" value = "${autore.id}"/>
-								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
-							</form>
-						</td>
-						<td>
-							<a class = "undecorated-link" href = "/showAutore?id=${autore.id}" th:text =  "|${autore.nome} ${autore.cognome}|"></a>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div class = "col-md-6"></div>
+		<div>
+			<ul th:each = "autore : ${autori}">
+				<li>
+					<a href = "/autore?id=${autore.id}" th:text = "${autore.nome} ${autore.cognome}"></a> 
+					<form action = "#" th:action = "@{/autore}" th:object = "${autore}" method = "post">
+						<input type = "hidden" name = "id" value = "${autore.id}"/>
+						<input type = "submit" name = "comando" value = "cancella"/>
+					</form>
+				</li>
+			</ul>
 		</div>
 		<footer>
 			<div class = "container-fluid">
