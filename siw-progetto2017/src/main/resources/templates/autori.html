@@ -45,7 +45,7 @@
 					<tr>
 						<td>
 							<form action = "#" th:action = "@{/removeAutore}" th:object = "${autore}" method = "post">
-								<input type = "hidden" name = "id" value = "${autore.id}"/>
+								<input type = "hidden" th:field = "*{id}"/>
 								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
 							</form>
 						</td>

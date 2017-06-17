@@ -45,7 +45,7 @@
 					<tr>
 						<td>
 							<form action = "#" th:action = "@{/removeOpera}" th:object = "${opera}" method = "post">
-								<input type = "hidden" name = "id" value = "${opera.id}"/>
+								<input type = "hidden" th:field = "*{id}"/>
 								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
 							</form>
 						</td>
