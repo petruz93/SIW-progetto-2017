@@ -1,6 +1,5 @@
 package it.uniroma3.galleria.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.galleria.model.Autore;
 import it.uniroma3.galleria.service.AutoreService;
@@ -34,12 +33,9 @@ public class AutoreController {
 		
 		if (bindingResult.hasErrors())
 			return "inserimento";
-		else {
-			this.autoreService.add(autore);
-			Iterable<Autore> autori = this.autoreService.findAll();
-			model.addAttribute("autori", autori);
-			return showAllAutori(model);
-		}
+		
+		this.autoreService.add(autore);
+		return "redirect:/listAutori";
 	}
 	
 	@GetMapping("/listAutori")
@@ -49,7 +45,7 @@ public class AutoreController {
 		return "autori";
 	}
 	
-	@GetMapping("/showAutore?id={id}")
+	@GetMapping("/showAutore/{id}")
 	public String infoAutore(@PathVariable Long id, Model model) {
 		Autore autore = this.autoreService.findById(id);
 		model.addAttribute("autore", autore);
@@ -57,11 +53,9 @@ public class AutoreController {
 	}
 	
 	@PostMapping("/removeAutore")
-	@RequestMapping(params={"comando"})
-	public String removeAutore(Model model, HttpServletRequest request) {
-		Long id = Long.valueOf(request.getParameter("id"));
+	public String removeAutore(@RequestParam Long id, Model model) {
 		this.autoreService.removeById(id);
-		return showAllAutori(model);
+		return "redirect:/listAutori";
 	}
 
 }
