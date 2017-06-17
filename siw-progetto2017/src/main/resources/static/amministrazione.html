@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
+<html>
 	<head>
-		<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"/>
-		<meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
-		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-		<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-		<link rel = "stylesheet" href = "css/galleria.css"/>
+		<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel = "stylesheet" href = "css/galleria.css">
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
-		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>	
-		<title> Elenco opere </title>
+		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+		<title> Home Galleria </title>
 	</head>
 	<body>
 		<nav class = "navbar navbar-default navbar-fixed-top">
@@ -39,23 +39,14 @@
 			</div>
 		</nav>
 		<div class = "container-fluid">
-			<div class = "col-md-2"></div>
-			<div class = "col-md-4" th:if = "${not #lists.isEmpty(opere)}">
-				<table th:each = "opere : ${opere}">
-					<tr>
-						<td>
-							<form action = "#" th:action = "@{/removeOpera}" th:object = "${opera}" method = "post">
-								<input type = "hidden" name = "id" value = "${opera.id}"/>
-								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
-							</form>
-						</td>
-						<td>
-							<a class = "undecorated-link" href = "/showOpera?id=${opera.id}" th:text =  "|${opera.titolo} ${opera.autore.cognome}|"></a>
-						</td>
-					</tr>
-				</table>
+			<div class = "row">
+				<div class = "col-md-4"></div>
+				<div class = "col-md-4">
+					<p> <a href = "/addAutore"> Inserisci un nuovo autore </a> </p>
+					<p> <a href = "/addOpera"> Inserisci una nuova opera </a> </p>
+				</div>
+				<div class = "col-md-4"></div>
 			</div>
-			<div class = "col-md-6"></div>
 		</div>
 		<footer>
 			<div class = "container-fluid">
@@ -65,7 +56,7 @@
 						<ul style = "list-style: none;">
 							<li> <p> Progetto giugno 2017 </p> </li>
 							<li> <p> Sistemi Informativi su Web </p> </li>
-							<li> <p> <a href = "http://informatica.ing.uniroma3.it"> <img src = "img/roma-tre-logo.png" style = "width: auto;"/> </a> </p> </li>
+							<li> <p> <a href = "http://informatica.ing.uniroma3.it"> <img src = "img/roma-tre-logo.png" alt = "roma-tre-logo.png" style = "width: auto;"> </a> </p> </li>
 						</ul>
 					</div>
 					<div class = "col-md-4">

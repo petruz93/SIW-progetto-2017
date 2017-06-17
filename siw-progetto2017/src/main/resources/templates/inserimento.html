@@ -28,7 +28,7 @@
 						<li> <a href = "/listOpere"> Opere </a> </li>
 						<li> <a href = "/listAutori"> Autori </a> </li>
 						<li> <a href = "contatti.html"> Contatti </a> </li>
-						<li> <a href = "inserimento.html"> Inserimento </a> </li>
+						<li> <a href = "amministrazione.html"> Amministrazione </a> </li>
 					</ul>
 					<div class = "nav navbar-nav navbar-right" id = "form-container">
 						<div class = "navbar-form">
@@ -39,29 +39,29 @@
 			</div>
 		</nav>
 		<div class = "container-fluid contenitore">
-			<div class = "row">
-				<div class = "col-md-2"></div>
-				<div class = "col-md-3">
+			<div class = "row" th:if = "${formAutore}">
+				<div class = "col-md-4"></div>
+				<div class = "col-md-4">
 					<form action = "#" th:action = "@{/addAutore}" th:object = "${autore}" method = "post">
 						<div class = "form-group">
 		                    <label> Nome* </label>
-		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
+		                    <input class = "form-control" type = "text" placeholder = "Nome"/> <!-- th:field = "*{nome}" -->
 						</div>
 						<div class = "form-group">
 		                    <label> Cognome* </label>
-		                    <input class = "form-control" type = "text" th:field = "*{cognome}" placeholder = "Cognome"/>							
+		                    <input class = "form-control" type = "text" placeholder = "Cognome"/> <!--th:field = "*{cognome}"-->						
 						</div>
 						<div class = "form-group">
 		                    <label> Nazione* </label>
-		                    <input class = "form-control" type = "text" th:field = "*{nazione}" placeholder = "Nazione"/>
+		                    <input class = "form-control" type = "text" placeholder = "Nazione"/> <!--th:field = "*{nazione}"-->
 						</div>
 						<div class = "form-group">
 		                    <label> Data di nascita* </label>
-		                    <input class = "form-control" type = "text" th:field = "*{dataNascita}" placeholder = "Data di nascita"/>
+		                    <input class = "form-control" type = "text" placeholder = "Data di nascita"/> <!--th:field = "*{dataNascita}"-->
 						</div>
 						<div class = "form-group">
 		                    <label> Data di morte </label>
-		                    <input class = "form-control" type = "text" th:field = "*{dataMorte}" placeholder = "Data di morte"/>
+		                    <input class = "form-control" type = "text" placeholder = "Data di morte"/> <!--th:field = "*{dataMorte}"-->
 						</div>
 						<div class = "form-group form-inline">
 							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
@@ -69,26 +69,29 @@
 						</div>
 					</form>
 				</div>
-				<div class = "col-md-2"></div>
-				<div class = "col-md-3">
-			<!--	<form action = "#" th:action = "@{/addOpera}" th:object = "${opera}" method = "post">
+				<div class = "col-md-4"></div>
+			</div>
+			<div class = "row" th:if = "${formOpera}">
+				<div class = "col-md-4"></div>
+				<div class = "col-md-4">
+					<form action = "#" th:action = "@{/addOpera}" method = "post">
 						<div class = "form-group">
 		                    <label> Titolo* </label>
-		                    <input class = "form-control" type = "text" th:field = "*{titolo}" placeholder = "Titolo"/>
+		                    <input class = "form-control" type = "text" placeholder = "Titolo"/>
 						</div>
 						<div class = "form-group">
 		                    <label> Anno di realizzazione* </label>
-		                    <input class = "form-control" type = "number" th:field = "*{anno}" placeholder = "Anno di realizzazione"/>							
+		                    <input class = "form-control" type = "number" placeholder = "Anno di realizzazione"/>							
 						</div>
 						<div class = "form-group">
 		                    <label> Tecnica usata* </label>
-		                    <input class = "form-control" type = "text" th:field = "*{tecnica}" placeholder = "Tecnica usata"/>
+		                    <input class = "form-control" type = "text" placeholder = "Tecnica usata"/>
 						</div>
 						<div class = "form-group">
 		                    <label> Dimensioni* </label>
 		                    <div class = "input-group form-inline">
-								<input class = "form-control" type = "number" th:field = "*{dimensioni.getWidth()}" placeholder = "Altezza"/>
-								<input class = "form-control" type = "number" th:field = "*{dimensioni.getHeight()}" placeholder = "Larghezza"/>
+								<input class = "form-control" type = "number" placeholder = "Altezza"/>
+								<input class = "form-control" type = "number" placeholder = "Larghezza"/>
 							</div>
 						</div>
 						<div class = "form-group">
@@ -101,9 +104,9 @@
 							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
 							<input class = "form-control" type = "reset" name = "ripristina" value = "ripristina"/>
 						</div>
-					</form> -->
+					</form>
 				</div>
-				<div class = "col-md-2"></div>
+				<div class = "col-md-4"></div>
 			</div>
 		</div>
 		<footer>
