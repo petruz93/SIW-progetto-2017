@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.galleria.model.Autore;
 import it.uniroma3.galleria.model.Opera;
+import it.uniroma3.galleria.service.AutoreService;
 import it.uniroma3.galleria.service.OperaService;
 
 @Controller
@@ -18,10 +20,14 @@ public class OperaController {
 	
 	@Autowired
 	private OperaService operaService;
+	@Autowired
+	private AutoreService autoreService;
 	
 	@GetMapping("/addOpera")
 	public String showForm(Model model) {
 		model.addAttribute("formOpera", true);
+		Iterable<Autore> autori = this.autoreService.findAll();
+		model.addAttribute("autori", autori);
 		return "inserimento";
 	}
 	
