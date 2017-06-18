@@ -37,9 +37,10 @@ public class OperaController {
 	public String checkOperaInfo(@Valid @ModelAttribute Opera opera,
 									BindingResult bindingResult, Model model) {
 		
-		if (bindingResult.hasErrors())
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("formOpera", true);
 			return "inserimento";
-		
+		}
 		// [TODO] inserimento duplicati
 		this.operaService.add(opera);
 		return "redirect:/listOpere";

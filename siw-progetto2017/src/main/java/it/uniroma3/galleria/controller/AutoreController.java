@@ -31,9 +31,10 @@ public class AutoreController {
 	public String checkAutoreInfo(@Valid @ModelAttribute Autore autore,
 									BindingResult bindingResult, Model model) {
 		
-		if (bindingResult.hasErrors())
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("formAutore", true);
 			return "inserimento";
-
+		}
 		// [TODO] inserimento duplicati
 		this.autoreService.add(autore);
 		return "redirect:/listAutori";
