@@ -88,11 +88,12 @@
 		                    <input class = "form-control" type = "text" th:field = "*{tecnica}" placeholder = "Tecnica usata"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Dimensioni* </label> <span th:if = "${#fields.hasErrors('dimensioni')}" th:text = "Errore"></span>
-		                    <div class = "input-group">
-								<input class = "form-control" type = "text" th:field = "*{dimensioni.height}" placeholder = "Altezza"/> <!-- Maccheronico -->
-								<input class = "form-control" type = "text" th:field = "*{dimensioni.width}" placeholder = "Larghezza"/> <!-- Maccheronico -->
-							</div>
+		                    <label> Altezza* </label> <span th:if = "${#fields.hasErrors('altezza')}" th:text = "Errore"></span>
+							<input class = "form-control" type = "text" th:field = "*{altezza}" placeholder = "Altezza"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Larghezza* </label> <span th:if = "${#fields.hasErrors('larghezza')}" th:text = "Errore"></span>
+		    				<input class = "form-control" type = "text" th:field = "*{larghezza}" placeholder = "Larghezza"/>
 						</div>
 						<div class = "form-group">
 							<label for = "elenco-autori"> Autore* </label> <span th:if = "${#fields.hasErrors('autore')}" th:text = "Errore"></span>
