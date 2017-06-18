@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(uniqueConstraints=@UniqueConstraint(columnNames={"titolo","autore"}))
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"titolo","autore_id"}))
 public class Opera {
 	
 	@Id
