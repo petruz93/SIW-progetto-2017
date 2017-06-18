@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.galleria.model.Stanza;
+import it.uniroma3.galleria.service.OperaService;
 import it.uniroma3.galleria.service.StanzaService;
 
 @Controller
@@ -21,9 +22,13 @@ public class StanzaController {
 	@Autowired
 	private StanzaService stanzaService;
 	
+	@Autowired
+	private OperaService operaService;
+	
 	@GetMapping("/addStanza")
 	public String showForm(Stanza stanza, Model model) {
 		model.addAttribute("formStanza", true);
+		model.addAttribute("opere", this.operaService.findAll());
 		return "inserimento";
 	}
 	
@@ -32,8 +37,7 @@ public class StanzaController {
 									BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("formStanza", true);
-			return "inserimento";
+			return showForm(stanza, model);
 		}
 		// [TODO] inserimento duplicati
 		this.stanzaService.add(stanza);
@@ -58,6 +62,13 @@ public class StanzaController {
 	public String removeStanza(@RequestParam Long id) {
 		this.stanzaService.removeById(id);
 		return "redirect:/listStanze";
+	}
+	
+	@PostMapping("/updateStanza")
+	public String moveOpera(@RequestParam Long opera_id, @RequestParam Long stanza_src,
+								@RequestParam Long stanza_dest) {
+		// [TODO]
+		return null;
 	}
 
 }

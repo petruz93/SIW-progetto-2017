@@ -123,8 +123,8 @@ public class Autore {
 	@Override
 	public String toString() {
 		return String.format(
-				"Autore[id=%d, nome=%s, cognome=%s, nazione=%s]",
-				id, nome, cognome, nazione);
+				"Autore[id=%d, nome=%s, cognome=%s]",
+				id, nome, cognome);
 	}
 
 }

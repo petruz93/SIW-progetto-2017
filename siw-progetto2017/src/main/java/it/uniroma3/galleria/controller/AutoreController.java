@@ -32,8 +32,7 @@ public class AutoreController {
 									BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("formAutore", true);
-			return "inserimento";
+			return showForm(autore, model);
 		}
 		// [TODO] inserimento duplicati
 		this.autoreService.add(autore);
