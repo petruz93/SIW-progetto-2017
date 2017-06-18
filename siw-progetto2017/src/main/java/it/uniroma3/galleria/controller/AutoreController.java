@@ -34,6 +34,7 @@ public class AutoreController {
 		if (bindingResult.hasErrors())
 			return "inserimento";
 
+		// [TODO] inserimento duplicati
 		this.autoreService.add(autore);
 		return "redirect:/listAutori";
 	}

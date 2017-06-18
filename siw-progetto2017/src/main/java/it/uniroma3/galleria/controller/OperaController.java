@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.galleria.model.Autore;
 import it.uniroma3.galleria.model.Opera;
@@ -37,12 +39,10 @@ public class OperaController {
 		
 		if (bindingResult.hasErrors())
 			return "inserimento";
-		else {
-			this.operaService.add(opera);
-			Iterable<Opera> opere = this.operaService.findAll();
-			model.addAttribute("opere", opere);
-			return "opere";
-		}
+		
+		// [TODO] inserimento duplicati
+		this.operaService.add(opera);
+		return "redirect:/listOpere";
 	}
 	
 	@GetMapping("/listOpere")
@@ -50,6 +50,19 @@ public class OperaController {
 		Iterable<Opera> opere = this.operaService.findAll();
 		model.addAttribute("opere", opere);
 		return "opere";
+	}
+	
+	@GetMapping("/showOpera/{id}")
+	public String infoOpera(@PathVariable Long id, Model model) {
+		Opera opera = this.operaService.findById(id);
+		model.addAttribute("opera", opera);
+		return "infoOpera";
+	}
+	
+	@PostMapping("/removeOpera")
+	public String removeOpera(@RequestParam Long id) {
+		this.operaService.removeById(id);
+		return "redirect:/listOpere";
 	}
 
 }
