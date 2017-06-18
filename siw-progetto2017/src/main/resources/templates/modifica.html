@@ -7,17 +7,17 @@
 		<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<link rel = "stylesheet" href = "css/galleria.css"/>
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
-		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>	
-		<title> Elenco autori </title>
+		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+		<title> Amministrazione Galleria </title>
 	</head>
 	<body>
 		<nav class = "navbar navbar-default navbar-fixed-top">
 			<div class = "container-fluid">
 				<div class="navbar-header">
 					<button type = "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "#galleria-navbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>                        
+						<span class = "icon-bar"></span>
+						<span class = "icon-bar"></span>
+						<span class = "icon-bar"></span>                        
 					</button>
 					<a class = "navbar-brand" href = "index.html"> Galleria </a>
 				</div>
@@ -32,30 +32,28 @@
 					</ul>
 					<div class = "nav navbar-nav navbar-right" id = "form-container">
 						<div class = "navbar-form">
-							<button class = "form-control" onclick = "impostaFormLogin()"> <i class = "glyphicon glyphicon-log-in"> </i> Login amministratore </button>
+							<button class = "form-control"> <i class = "glyphicon glyphicon-log-out"> </i> Logout amministratore </button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</nav>
-		<div class = "container-fluid">
-			<div class = "col-md-2"></div>
-			<div class = "col-md-4" th:if = "${not #lists.isEmpty(autori)}">
-				<table>
-					<tr th:each = "autore : ${autori}">
-						<td>
-							<form action = "#" th:action = "@{/removeAutore}" method = "post">
-								<input type = "hidden" name = "id" th:value = "${autore.id}"/>
-								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
-							</form>
-						</td>
-						<td>
-							<a class = "undecorated-link" href = "/showAutore/${autore.id}" th:text =  "|${autore.nome} ${autore.cognome}|"></a>
-						</td>
-					</tr>
-				</table>
+		<div class = "container-fluid contenitore">
+			<div class = "row" th:if = "${formOpera}">
+				<div class = "col-md-4"></div>
+				<div class = "col-md-4">
+					<h2 style = "text-align: center;"> Modifica stanza </h2>
+					<form action = "#" th:action = "@{/updateStanza}" th:object = "${stanza}" method = "post">
+						<div class = "form-group">
+						</div>
+						<div class = "form-group form-inline">
+							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
+							<input class = "form-control" type = "reset" name = "ripristina" value = "ripristina"/>
+						</div>
+					</form>
+				</div>
+				<div class = "col-md-4"></div>
 			</div>
-			<div class = "col-md-6"></div>
 		</div>
 		<footer>
 			<div class = "container-fluid">

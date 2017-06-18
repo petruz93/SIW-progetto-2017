@@ -24,7 +24,7 @@
 				<div class = "collapse navbar-collapse" id = "galleria-navbar">
 					<ul class = "nav navbar-nav">
 						<li> <a href = "index.html"> Home </a> </li>
-						<li> <a href = "/stanza"> Stanze </a> </li>
+						<li> <a href = "/listStanze"> Stanze </a> </li>
 						<li> <a href = "/listOpere"> Opere </a> </li>
 						<li> <a href = "/listAutori"> Autori </a> </li>
 						<li> <a href = "contatti.html"> Contatti </a> </li>
@@ -42,6 +42,7 @@
 			<div class = "row" th:if = "${formAutore}">
 				<div class = "col-md-4"></div>
 				<div class = "col-md-4">
+					<h2 style = "text-align: center;"> Inserimento autore </h2>
 					<form action = "#" th:action = "@{/addAutore}" th:object = "${autore}" method = "post">
 						<div class = "form-group">
 		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "Errore"></span>
@@ -74,6 +75,7 @@
 			<div class = "row" th:if = "${formOpera}">
 				<div class = "col-md-4"></div>
 				<div class = "col-md-4">
+					<h2 style = "text-align: center;"> Inserimento opera </h2>
 					<form action = "#" th:action = "@{/addOpera}" th:object = "${opera}" method = "post">
 						<div class = "form-group">
 		                    <label> Titolo* </label> <span th:if = "${#fields.hasErrors('titolo')}" th:text = "Errore"></span>
@@ -99,7 +101,7 @@
 							<label for = "elenco-autori"> Autore* </label> <span th:if = "${#fields.hasErrors('autore')}" th:text = "Errore"></span>
 							<select class = "form-control" id = "elenco-autori" th:field = "*{autore}">
 								<option selected = "selected" th:value = "null"> -- Seleziona un autore -- </option>
-								<option th:each = "autore : ${autori}" th:text = "|${autore.nome} ${autore.cognome}|" th:value = "${autore}"></option>
+								<option th:each = "autore : ${autori}" th:text = "|${autore.nome} ${autore.cognome}|" th:value = "${autore.id}"></option>
 							</select>
 						</div>
 						<div class = "form-group form-inline">

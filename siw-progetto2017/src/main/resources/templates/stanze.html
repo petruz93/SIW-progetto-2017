@@ -40,17 +40,17 @@
 		</nav>
 		<div class = "container-fluid">
 			<div class = "col-md-2"></div>
-			<div class = "col-md-4" th:if = "${not #lists.isEmpty(autori)}">
+			<div class = "col-md-4" th:if = "${not #lists.isEmpty(stanze)}">
 				<table>
-					<tr th:each = "autore : ${autori}">
+					<tr th:each = "stanza : ${stanze}">
 						<td>
-							<form action = "#" th:action = "@{/removeAutore}" method = "post">
-								<input type = "hidden" name = "id" th:value = "${autore.id}"/>
-								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
+							<form action = "#" th:action = "@{/updateAutore}" method = "post">
+								<input type = "hidden" name = "id" th:value = "${stanza.id}"/>
+								<input class = "form-control" type = "submit" name = "comando" value = "modifica"/>
 							</form>
 						</td>
 						<td>
-							<a class = "undecorated-link" href = "/showAutore/${autore.id}" th:text =  "|${autore.nome} ${autore.cognome}|"></a>
+							<a class = "undecorated-link" href = "/showStanza/${stanza.id}" th:text =  "${stanza.nome}"></a>
 						</td>
 					</tr>
 				</table>

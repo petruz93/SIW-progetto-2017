@@ -24,7 +24,7 @@
 				<div class = "collapse navbar-collapse" id = "galleria-navbar">
 					<ul class = "nav navbar-nav">
 						<li> <a href = "index.html"> Home </a> </li>
-						<li> <a href = "/stanza"> Stanze </a> </li>
+						<li> <a href = "/listStanze"> Stanze </a> </li>
 						<li> <a href = "/listOpere"> Opere </a> </li>
 						<li> <a href = "/listAutori"> Autori </a> </li>
 						<li> <a href = "contatti.html"> Contatti </a> </li>
@@ -41,7 +41,7 @@
 		<div class = "container-fluid">
 			<div class = "col-md-2"></div>
 			<div class = "col-md-4" th:if = "${not #lists.isEmpty(opere)}">
-				<table th:each = "opere : ${opere}">
+				<table th:each = "opera : ${opere}">
 					<tr>
 						<td>
 							<form action = "#" th:action = "@{/removeOpera}" method = "post">
@@ -50,7 +50,7 @@
 							</form>
 						</td>
 						<td>
-							<a class = "undecorated-link" href = "/showOpera/${opera.id}" th:text =  "|${opera.titolo} ${opera.autore.cognome}|"></a>
+							<a class = "undecorated-link" href = "/showOpera/${opera.id}" th:text =  "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|"></a>
 						</td>
 					</tr>
 				</table>
