@@ -26,7 +26,7 @@ public class OperaController {
 	private AutoreService autoreService;
 	
 	@GetMapping("/addOpera")
-	public String showForm(Model model) {
+	public String showForm(Opera opera, Model model) {
 		model.addAttribute("formOpera", true);
 		Iterable<Autore> autori = this.autoreService.findAll();
 		model.addAttribute("autori", autori);

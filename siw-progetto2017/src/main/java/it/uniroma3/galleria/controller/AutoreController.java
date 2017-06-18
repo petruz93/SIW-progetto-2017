@@ -22,7 +22,7 @@ public class AutoreController {
 	private AutoreService autoreService;
 	
 	@GetMapping("/addAutore")
-	public String showForm(Model model) {
+	public String showForm(Autore autore, Model model) {
 		model.addAttribute("formAutore", true);
 		return "inserimento";
 	}
