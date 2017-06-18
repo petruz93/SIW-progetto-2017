@@ -1,18 +1,19 @@
 package it.uniroma3.galleria.model;
 
-import java.awt.Dimension;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"titolo","autore"}))
 public class Opera {
 	
 	@Id
@@ -21,7 +22,6 @@ public class Opera {
 	
 	@NotNull
 	@Size(min=1)
-	@Column(unique = true)
 	private String titolo;
 	
 	@NotNull
@@ -32,7 +32,12 @@ public class Opera {
 	private String tecnica;
 	
 	@NotNull
-	private Dimension dimensioni;
+	@Min(0)
+	private Integer altezza;
+	
+	@NotNull
+	@Min(0)
+	private Integer larghezza;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@NotNull
@@ -40,11 +45,12 @@ public class Opera {
 	
 	public Opera() {}
 	
-	public Opera(String titolo, Integer anno, String tecnica, int larghezza, int altezza, Autore autore) {
+	public Opera(String titolo, Integer anno, String tecnica, Integer larghezza, Integer altezza, Autore autore) {
 		this.titolo = titolo;
 		this.anno = anno;
 		this.tecnica = tecnica;
-		this.dimensioni = new Dimension(larghezza, altezza);
+		this.altezza = altezza;
+		this.larghezza = larghezza;
 		this.autore = autore;
 	}
 
@@ -79,17 +85,21 @@ public class Opera {
 	public void setTecnica(String tecnica) {
 		this.tecnica = tecnica;
 	}
-
-	public Dimension getDimensioni() {
-		return dimensioni;
-	}
-
-	public void setDimensioni(Dimension dimensioni) {
-		this.dimensioni = dimensioni;
+	
+	public Integer getAltezza() {
+		return altezza;
 	}
 	
-	public void setDimensioni(int larghezza, int altezza) {
-		this.dimensioni = new Dimension(larghezza, altezza);
+	public void setAltezza(Integer altezza) {
+		this.altezza = altezza;
+	}
+	
+	public Integer getLarghezza() {
+		return larghezza;
+	}
+	
+	public void setLarghezza(Integer larghezza) {
+		this.larghezza = larghezza;
 	}
 
 	public Autore getAutore() {
