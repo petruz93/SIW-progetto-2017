@@ -38,8 +38,7 @@ public class OperaController {
 									BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("formOpera", true);
-			return "inserimento";
+			return showForm(opera, model);
 		}
 		// [TODO] inserimento duplicati
 		this.operaService.add(opera);
