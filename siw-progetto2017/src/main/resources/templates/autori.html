@@ -44,8 +44,8 @@
 				<table th:each = "autore : ${autori}">
 					<tr>
 						<td>
-							<form action = "#" th:action = "@{/removeAutore}" th:object = "${autore}" method = "post">
-								<input type = "hidden" th:field = "*{id}"/>
+							<form action = "#" th:action = "@{/removeAutore}" method = "post">
+								<input type = "hidden" name = "id" th:value = "${autore.id}"/>
 								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
 							</form>
 						</td>

@@ -33,7 +33,7 @@ public class AutoreController {
 		
 		if (bindingResult.hasErrors())
 			return "inserimento";
-		
+
 		this.autoreService.add(autore);
 		return "redirect:/listAutori";
 	}
@@ -53,7 +53,7 @@ public class AutoreController {
 	}
 	
 	@PostMapping("/removeAutore")
-	public String removeAutore(@RequestParam Long id, Model model) {
+	public String removeAutore(@RequestParam Long id) {
 		this.autoreService.removeById(id);
 		return "redirect:/listAutori";
 	}
