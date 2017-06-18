@@ -44,8 +44,8 @@
 				<table th:each = "opere : ${opere}">
 					<tr>
 						<td>
-							<form action = "#" th:action = "@{/removeOpera}" th:object = "${opera}" method = "post">
-								<input type = "hidden" th:field = "*{id}"/>
+							<form action = "#" th:action = "@{/removeOpera}" method = "post">
+								<input type = "hidden" name = "id" th:value = "${opera.id}"/>
 								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
 							</form>
 						</td>

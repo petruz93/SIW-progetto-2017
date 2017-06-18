@@ -44,23 +44,23 @@
 				<div class = "col-md-4">
 					<form action = "#" th:action = "@{/addAutore}" th:object = "${autore}" method = "post">
 						<div class = "form-group">
-		                    <label> Nome* </label>
+		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Cognome* </label>
+		                    <label> Cognome* </label> <span th:if = "${#fields.hasErrors('cognome')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{cognome}" placeholder = "Cognome"/>						
 						</div>
 						<div class = "form-group">
-		                    <label> Nazione* </label>
+		                    <label> Nazione* </label> <span th:if = "${#fields.hasErrors('nazione')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{nazione}" placeholder = "Nazione"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Data di nascita* </label>
+		                    <label> Data di nascita* </label> <span th:if = "${#fields.hasErrors('dataNascita')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{dataNascita}" placeholder = "Data di nascita"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Data di morte </label>
+		                    <label> Data di morte </label> <span th:if = "${#fields.hasErrors('dataMorte')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{dataMorte}" placeholder = "Data di morte"/>
 						</div>
 						<div class = "form-group form-inline">
@@ -76,28 +76,29 @@
 				<div class = "col-md-4">
 					<form action = "#" th:action = "@{/addOpera}" th:object = "${opera}" method = "post">
 						<div class = "form-group">
-		                    <label> Titolo* </label>
+		                    <label> Titolo* </label> <span th:if = "${#fields.hasErrors('titolo')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{titolo}" placeholder = "Titolo"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Anno di realizzazione* </label>
-		                    <input class = "form-control" type = "number" th:field = "*{anno}" placeholder = "Anno di realizzazione"/>							
+		                    <label> Anno di realizzazione* </label> <span th:if = "${#fields.hasErrors('anno')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{anno}" placeholder = "Anno di realizzazione"/>							
 						</div>
 						<div class = "form-group">
-		                    <label> Tecnica usata* </label>
+		                    <label> Tecnica usata* </label> <span th:if = "${#fields.hasErrors('tecnica')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{tecnica}" placeholder = "Tecnica usata"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Dimensioni* </label>
-		                    <div class = "input-group form-inline">
-								<input class = "form-control" type = "number" th:field = "*{dimensioni.height}" placeholder = "Altezza"/> <!-- Maccheronico -->
-								<input class = "form-control" type = "number" th:field = "*{dimensioni.width}" placeholder = "Larghezza"/> <!-- Maccheronico -->
+		                    <label> Dimensioni* </label> <span th:if = "${#fields.hasErrors('dimensioni')}" th:text = "Errore"></span>
+		                    <div class = "input-group">
+								<input class = "form-control" type = "text" th:field = "*{dimensioni.height}" placeholder = "Altezza"/> <!-- Maccheronico -->
+								<input class = "form-control" type = "text" th:field = "*{dimensioni.width}" placeholder = "Larghezza"/> <!-- Maccheronico -->
 							</div>
 						</div>
 						<div class = "form-group">
-							<label for = "elenco-autori"> Autore* </label>
-							<select class = "form-control" id = "elenco-autori" th:each = "autore : ${autori}">
-								<option th:text = "|${autore.nome} ${autore.cognome}|"></option>
+							<label for = "elenco-autori"> Autore* </label> <span th:if = "${#fields.hasErrors('autore')}" th:text = "Errore"></span>
+							<select class = "form-control" id = "elenco-autori" th:field = "*{autore}">
+								<option selected = "selected" th:value = "null"> -- Seleziona un autore -- </option>
+								<option th:each = "autore : ${autori}" th:text = "|${autore.nome} ${autore.cognome}|" th:value = "${autore}"></option>
 							</select>
 						</div>
 						<div class = "form-group form-inline">

@@ -41,8 +41,8 @@
 		<div class = "container-fluid">
 			<div class = "col-md-2"></div>
 			<div class = "col-md-4" th:if = "${not #lists.isEmpty(autori)}">
-				<table th:each = "autore : ${autori}">
-					<tr>
+				<table>
+					<tr th:each = "autore : ${autori}">
 						<td>
 							<form action = "#" th:action = "@{/removeAutore}" method = "post">
 								<input type = "hidden" name = "id" th:value = "${autore.id}"/>
