@@ -52,8 +52,8 @@ public class StanzaController {
 		return "stanze";
 	}
 	
-	@GetMapping("/showStanza/{id}")
-	public String infoStanza(@PathVariable Long id, Model model) {
+	@GetMapping("/showStanza")
+	public String infoStanza(@RequestParam Long id, Model model) {
 		Stanza stanza = this.stanzaService.findById(id);
 		model.addAttribute("stanza", stanza);
 		model.addAttribute("opere", stanza.getOpere());
