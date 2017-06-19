@@ -5,7 +5,7 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
 		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 		<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-		<link rel = "stylesheet" href = "../css/galleria.css"/>
+		<link rel = "stylesheet" href = "css/galleria.css"/>
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
 		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>	
 		<title> Informazioni stanza </title>
@@ -39,23 +39,22 @@
 			</div>
 		</nav>
 		<div class = "container-fluid">
-			<div class = "col-md-4"></div>
-			<div class = "col-md-4">
+			<div class = "col-md-2"></div>
+			<div class = "col-md-8">
 				<h2 th:text = "${stanza.nome}" style = "text-align: center;"></h2>
 				<p th:text = "${stanza.descrizione}"></p>
-				<table  th:if = "${not #lists.isEmpty(opere)}" th:each = "opera : ${opere}">
-					<tr>
-						<td>
-							<form action = "#" th:action = "@{/removeOpera}" method = "post">
-								<input type = "hidden" name = "id" th:value = "${opera.id}"/>
-								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
-							</form>
-						</td>
-						<td>
-							<a class = "undecorated-link" href = "/showOpera/${opera.id}" th:text =  "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|"></a>
-						</td>
-						<td>
-							<fieldset>
+				<div class = "container-fluid" th:if = "${not #lists.isEmpty(opere)}">
+					<div class = "row">
+						<div class = "thumbnail col-md-3" th:each = "opera : ${opere}">
+							<p th:text = "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|" style = "text-align: center;"></p>
+							<a class = "undecorated-link" href = "/showOpera(id = ${opera.id})">
+								<img src = "img/informazione-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: auto;"/>
+							</a>
+							<div class = "caption">
+								<form action = "#" th:action = "@{/removeOpera}" method = "post">
+									<input type = "hidden" name = "id" th:value = "${opera.id}"/>
+									<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
+								</form>
 								<form action = "#" th:action = "@{/updateStanza}" method = "post">
 									<input type = "hidden" name = "opera_id" th:value = "${opera.id}"/>
 									<input type = "hidden" name = "stanza_src" th:value = "${stanza.id}"/>
@@ -65,12 +64,12 @@
 									</select>
 									<input class = "form-control" type = "submit" name = "comando" value = "sposta"/>
 								</form>
-							</fieldset>
-						</td>
-					</tr>
-				</table>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class = "col-md-4"></div>
+			<div class = "col-md-2"></div>
 		</div>
 		<footer>
 			<div class = "container-fluid">
@@ -80,7 +79,7 @@
 						<ul style = "list-style: none;">
 							<li> <p> Progetto giugno 2017 </p> </li>
 							<li> <p> Sistemi Informativi su Web </p> </li>
-							<li> <p> <a href = "http://informatica.ing.uniroma3.it"> <img src = "../img/roma-tre-logo.png" style = "width: auto;"/> </a> </p> </li>
+							<li> <p> <a href = "http://informatica.ing.uniroma3.it"> <img src = "img/roma-tre-logo.png" style = "width: auto;"/> </a> </p> </li>
 						</ul>
 					</div>
 					<div class = "col-md-4">
