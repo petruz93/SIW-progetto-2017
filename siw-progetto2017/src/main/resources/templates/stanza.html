@@ -12,31 +12,7 @@
 	</head>
 	<body>
 		<nav class = "navbar navbar-default navbar-fixed-top">
-			<div class = "container-fluid">
-				<div class="navbar-header">
-					<button type = "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "#galleria-navbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>                        
-					</button>
-					<a class = "navbar-brand" href = "index.html"> Galleria </a>
-				</div>
-				<div class = "collapse navbar-collapse" id = "galleria-navbar">
-					<ul class = "nav navbar-nav">
-						<li> <a href = "index.html"> Home </a> </li>
-						<li> <a href = "/listStanze"> Stanze </a> </li>
-						<li> <a href = "/listOpere"> Opere </a> </li>
-						<li> <a href = "/listAutori"> Autori </a> </li>
-						<li> <a href = "contatti.html"> Contatti </a> </li>
-						<li> <a href = "amministrazione.html"> Amministrazione </a> </li>
-					</ul>
-					<div class = "nav navbar-nav navbar-right" id = "form-container">
-						<div class = "navbar-form">
-							<button class = "form-control" onclick = "impostaFormLogin()"> <i class = "glyphicon glyphicon-log-in"> </i> Login amministratore </button>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div th:insert = "index :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid">
 			<div class = "col-md-2"></div>
@@ -72,40 +48,7 @@
 			<div class = "col-md-2"></div>
 		</div>
 		<footer>
-			<div class = "container-fluid">
-				<div class = "row">
-					<div class = "col-md-2"></div>
-					<div class = "col-md-4">
-						<ul style = "list-style: none;">
-							<li> <p> Progetto giugno 2017 </p> </li>
-							<li> <p> Sistemi Informativi su Web </p> </li>
-							<li> <p> <a href = "http://informatica.ing.uniroma3.it"> <img src = "img/roma-tre-logo.png" style = "width: auto;"/> </a> </p> </li>
-						</ul>
-					</div>
-					<div class = "col-md-4">
-						<ul style = "list-style: none;">
-							<li>
-								<p> Powered and designed by </p>
-							</li>
-							<li>
-								<p>
-									<a class = "undecorated-link" href = "#"> Matteo Petruzziello</a>
-									<a class = "undecorated-link" href = "https://www.facebook.com/matteo.petruzziello"> <i class = "fa fa-facebook-square"></i> </a>
-									<a class = "undecorated-link" href = "https://github.com/petruz93"> <i class = "fa fa-github-square"></i> </a>
-								</p>
-							</li>
-							<li>
-								<p>
-									<a class = "undecorated-link" href = "#"> Marco Peroni </a>
-									<a class = "undecorated-link" href = "https://www.facebook.com/QuelBelPargolo"> <i class = "fa fa-facebook-square"></i> </a>
-									<a class = "undecorated-link" href = "https://github.com/Pargolo"> <i class = "fa fa-github-square"></i> </a>
-								</p>									
-							</li>
-						</ul>
-					</div>
-					<div class = "col-md-2"></div>
-				</div>
-			</div>
+			<div th:insert = "index :: footer-content"></div>
 		</footer>
 	</body>
 </html>

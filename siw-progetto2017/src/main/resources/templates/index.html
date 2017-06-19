@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th = "http://www.thymeleaf.org">
 	<head>
-		<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8">
-		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
-		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel = "stylesheet" href = "css/galleria.css">
+		<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"/>
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
+		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+		<link rel = "stylesheet" href = "css/galleria.css"/>
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
 		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
 		<title> Home Galleria </title>
 	</head>
 	<body>
-		<nav class = "navbar navbar-default navbar-fixed-top">
+		<nav class = "navbar navbar-default navbar-fixed-top" th:fragment = "nav-content">
 			<div class = "container-fluid">
 				<div class="navbar-header">
 					<button type = "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "#galleria-navbar">
@@ -39,14 +39,14 @@
 			</div>
 		</nav>
 		<footer>
-			<div class = "container-fluid">
+			<div class = "container-fluid" th:fragment = "footer-content">
 				<div class = "row">
 					<div class = "col-md-2"></div>
 					<div class = "col-md-4">
 						<ul style = "list-style: none;">
 							<li> <p> Progetto giugno 2017 </p> </li>
 							<li> <p> Sistemi Informativi su Web </p> </li>
-							<li> <p> <a href = "http://informatica.ing.uniroma3.it"> <img src = "img/roma-tre-logo.png" alt = "roma-tre-logo.png" style = "width: auto;"> </a> </p> </li>
+							<li> <p> <a href = "http://informatica.ing.uniroma3.it"> <img src = "img/roma-tre-logo.png" alt = "roma-tre-logo.png" style = "width: auto;"/> </a> </p> </li>
 						</ul>
 					</div>
 					<div class = "col-md-4">
