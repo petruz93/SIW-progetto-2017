@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
+<html xmlns:th = "http://www.thymeleaf.org" xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 	<head>
 		<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"/>
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
@@ -29,16 +29,55 @@
 						<li> <a href = "/listOpere"> Opere </a> </li>
 						<li> <a href = "/listAutori"> Autori </a> </li>
 						<li> <a href = "contatti.html"> Contatti </a> </li>
-						<li> <a href = "amministrazione.html"> Amministrazione </a> </li>
+						<li sec:authorize = "isAuthenticated()">
+							<a href = "amministrazione.html"> Amministrazione </a>
+						</li>
 					</ul>
 					<div class = "nav navbar-nav navbar-right" id = "form-container">
-						<div class = "navbar-form">
+						<div sec:authorize = "!isAuthenticated()" class = "navbar-form">
 							<button class = "form-control" onclick = "impostaFormLogin()"> <i class = "glyphicon glyphicon-log-in"> </i> Login amministratore </button>
+						</div>
+						<div sec:authorize = "isAuthenticated()">
+							<form class = "navbar-form" th:action = "@{/logout}" method = "post">
+								<button class = "form-control" type = "submit"> <i class = "glyphicon glyphicon-log-out"> </i> Logout amministratore </button>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</nav>
+		<div class = "container-fluid">
+			<div class = "jumbotron" style = "text-align: center;">
+				<h1> Galleria </h1>
+				<p> Evviva la vita ma la fica è più buona :P </p>
+			</div>
+			<div id = "carousel" class = "carousel slide" data-ride = "carousel">
+				<!-- Indicatori -->
+				<ol class = "carousel-indicators">
+					<li th:each = "stanza, index : ${stanze}" data-target = "#carousel" data-slide-to = "index"></li>
+				</ol>			
+				<!-- Contenitore immagini scorrevoli -->
+				<div class = "carousel-inner" th:each = "stanza, index : ${stanze}">
+					<!-- Immagine stanza -->
+					<div class = "item active" >
+						<img src = "informazione-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: 100%;"/>
+							<div class = "carousel-caption">
+								<h3 th:text = "${stanza.nome}"></h3>
+							</div>
+					</div>
+				</div>
+				<!-- Tasto immagine precedente (sinistra) -->
+				<a class = "left carousel-control" href = "#carousel" data-slide = "prev">
+					<span class = "glyphicon glyphicon-chevron-left"></span>
+					<span class = "sr-only"> Precendente </span>
+				</a>
+				<!-- Tasto immagine successiva (destra) -->
+				<a class = "right carousel-control" href = "#myCarousel" data-slide = "next">
+					<span class = "glyphicon glyphicon-chevron-right"></span>
+					<span class = "sr-only"> Successiva </span>
+				</a>
+			</div>
+		</div>
 		<footer>
 			<div class = "container-fluid" th:fragment = "footer-content">
 				<div class = "row">
