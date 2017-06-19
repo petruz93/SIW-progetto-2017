@@ -8,11 +8,11 @@
 		<link rel = "stylesheet" href = "css/galleria.css"/>
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
 		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
-		<title> Amministrazione Galleria </title>
+		<title> Inserimento dati </title>
 	</head>
 	<body>
 		<nav class = "navbar navbar-default navbar-fixed-top">
-			<div th:insert = "index :: nav-content"></div>
+			<div th:include = "index :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid contenitore">
 			<div class = "row" th:if = "${formAutore}">
@@ -114,7 +114,7 @@
 			</div>
 		</div>
 		<footer>
-			<div th:insert = "index :: footer-content"></div>
+			<div th:include = "index :: footer-content"></div>
 		</footer>
 	</body>
 </html>

@@ -12,16 +12,16 @@
 	</head>
 	<body>
 		<nav class = "navbar navbar-default navbar-fixed-top">
-			<div th:insert = "index :: nav-content"></div>
+			<div th:include = "index :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid">
 			<div class = "col-md-2"></div>
 			<div class = "col-md-8">
 				<h2 th:text = "${stanza.nome}" style = "text-align: center;"></h2>
 				<p th:text = "${stanza.descrizione}"></p>
-				<div class = "container-fluid" th:if = "${not #lists.isEmpty(opere)}">
+				<div class = "container-fluid" th:if = "${not #lists.isEmpty(stanza.opere)}">
 					<div class = "row">
-						<div class = "thumbnail col-md-3" th:each = "opera : ${opere}">
+						<div class = "thumbnail col-md-3" th:each = "opera : ${stanza.opere}">
 							<p th:text = "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|" style = "text-align: center;"></p>
 							<a class = "undecorated-link" href = "/showOpera(id = ${opera.id})">
 								<img src = "img/informazione-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: auto;"/>
@@ -48,7 +48,7 @@
 			<div class = "col-md-2"></div>
 		</div>
 		<footer>
-			<div th:insert = "index :: footer-content"></div>
+			<div th:include = "index :: footer-content"></div>
 		</footer>
 	</body>
 </html>
