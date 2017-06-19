@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.galleria.model.Opera;
 import it.uniroma3.galleria.model.Stanza;
 import it.uniroma3.galleria.service.OperaService;
 import it.uniroma3.galleria.service.StanzaService;
@@ -55,7 +56,7 @@ public class StanzaController {
 	public String infoStanza(@PathVariable Long id, Model model) {
 		Stanza stanza = this.stanzaService.findById(id);
 		model.addAttribute("stanza", stanza);
-		return "infoAutore";
+		return "stanza";
 	}
 	
 	@PostMapping("/removeStanza")
@@ -67,8 +68,14 @@ public class StanzaController {
 	@PostMapping("/updateStanza")
 	public String moveOpera(@RequestParam Long opera_id, @RequestParam Long stanza_src,
 								@RequestParam Long stanza_dest) {
-		// [TODO]
-		return null;
+		
+		Opera opera = this.operaService.findById(opera_id);
+		Stanza src = this.stanzaService.findById(stanza_src);
+		Stanza dest = this.stanzaService.findById(stanza_dest);
+		src.getOpere().remove(opera);
+		dest.getOpere().add(opera);
+		this.stanzaService.update(src, dest);
+		return "redirect:/showStanza/{stanza_src}";
 	}
 
 }

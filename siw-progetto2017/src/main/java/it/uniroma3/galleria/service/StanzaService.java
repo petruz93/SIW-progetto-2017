@@ -35,5 +35,11 @@ public class StanzaService {
 	public void removeById(Long id) {
 		this.stanzaRepository.delete(id);
 	}
+	
+	@Transactional
+	public void update(Stanza... stanze) {
+		for (Stanza s : stanze)
+			this.stanzaRepository.save(s);
+	}
 
 }
