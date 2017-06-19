@@ -55,9 +55,8 @@ public class StanzaController {
 	public String infoStanza(@RequestParam Long id, Model model) {
 		Stanza stanza = this.stanzaService.findById(id);
 		model.addAttribute("stanza", stanza);
-		model.addAttribute("opere", stanza.getOpere());
 		model.addAttribute("stanze", this.stanzaService.findAll());
-		return "stanza";
+		return "infoStanza";
 	}
 	
 	@PostMapping("/removeStanza")
