@@ -56,6 +56,8 @@ public class StanzaController {
 	public String infoStanza(@PathVariable Long id, Model model) {
 		Stanza stanza = this.stanzaService.findById(id);
 		model.addAttribute("stanza", stanza);
+		model.addAttribute("opere", stanza.getOpere());
+		model.addAttribute("stanze", this.stanzaService.findAll());
 		return "stanza";
 	}
 	
@@ -63,15 +65,6 @@ public class StanzaController {
 	public String removeStanza(@RequestParam Long id) {
 		this.stanzaService.removeById(id);
 		return "redirect:/listStanze";
-	}
-	
-	@GetMapping("/updateStanza/{id}")
-	public String updateStanza(@PathVariable Long id, Model model) {
-		Stanza stanza = this.stanzaService.findById(id);
-		model.addAttribute("stanza", stanza);
-		model.addAttribute("opere", stanza.getOpere());
-		model.addAttribute("stanze", this.stanzaService.findAll());
-		return "modifica";
 	}
 	
 	@PostMapping("/updateStanza")
