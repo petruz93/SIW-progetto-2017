@@ -28,9 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http
+		.csrf().disable()
 		.authorizeRequests()
 			.antMatchers("modifica", "inserimento", "amministrazione", "/removeOpera", "/removeAutore", "/removeStanza", "/updateStanza")
-			.hasRole("ADMIN")
+			.hasAuthority("ROLE_ADMIN")
+			.anyRequest().permitAll()
 			.and()
 		.formLogin()
 			.loginPage("/login").permitAll()
