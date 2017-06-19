@@ -69,7 +69,7 @@ public class StanzaController {
 	
 	@PostMapping("/updateStanza")
 	public String moveOpera(@RequestParam Long opera_id, @RequestParam Long stanza_src,
-								@RequestParam Long stanza_dest) {
+								@RequestParam Long stanza_dest, Model model) {
 		
 		Opera opera = this.operaService.findById(opera_id);
 		Stanza src = this.stanzaService.findById(stanza_src);
@@ -77,7 +77,7 @@ public class StanzaController {
 		src.getOpere().remove(opera);
 		dest.getOpere().add(opera);
 		this.stanzaService.update(src, dest);
-		return "redirect:/showStanza/{stanza_src}";
+		return infoStanza(stanza_src, model);
 	}
 
 }
