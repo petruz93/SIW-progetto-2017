@@ -65,6 +65,15 @@ public class StanzaController {
 		return "redirect:/listStanze";
 	}
 	
+	@GetMapping("/updateStanza/{id}")
+	public String updateStanza(@PathVariable Long id, Model model) {
+		Stanza stanza = this.stanzaService.findById(id);
+		model.addAttribute("stanza", stanza);
+		model.addAttribute("opere", stanza.getOpere());
+		model.addAttribute("stanze", this.stanzaService.findAll());
+		return "modifica";
+	}
+	
 	@PostMapping("/updateStanza")
 	public String moveOpera(@RequestParam Long opera_id, @RequestParam Long stanza_src,
 								@RequestParam Long stanza_dest) {
