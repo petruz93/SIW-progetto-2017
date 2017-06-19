@@ -1,6 +1,5 @@
 package it.uniroma3.galleria.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +16,6 @@ public class Users {
 	
 	@NotNull
 	@Size(min=1)
-	@Column(unique = true)
 	private String username;
 	
 	@NotNull
@@ -35,6 +33,14 @@ public class Users {
 		this.enabled = true;
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
