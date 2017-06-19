@@ -112,6 +112,30 @@
 				</div>
 				<div class = "col-md-4"></div>
 			</div>
+			<div class = "row" th:if = "${formStanza}">
+				<div class = "col-md-4"></div>
+				<div class = "col-md-4">
+					<h2 style = "text-align: center;"> Inserimento stanza </h2>
+					<form action = "#" th:action = "@{/addStanza}" th:object = "${stanza}" method = "post">
+						<div class = "form-group">
+		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Descrizione* </label> <span th:if = "${#fields.hasErrors('descrizione')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "textarea" th:field = "*{descrizione}" placeholder = "Descrizione"/>							
+						</div>
+						<div class = "form-group">
+							<input class = "form-control" type = "checkbox" th:each = "opera : ${opere}" th:field = "*{opere}" th:text = "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|" th:value = "${opera.id}"></input>
+						</div>
+						<div class = "form-group form-inline">
+							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
+							<input class = "form-control" type = "reset" name = "ripristina" value = "ripristina"/>
+						</div>
+					</form>
+				</div>
+				<div class = "col-md-4"></div>
+			</div>
 		</div>
 		<footer>
 			<div class = "container-fluid">

@@ -44,7 +44,12 @@
 				<div class = "col-md-4">
 					<h2 style = "text-align: center;"> Modifica stanza </h2>
 					<form action = "#" th:action = "@{/updateStanza}" th:object = "${stanza}" method = "post">
-						<div class = "form-group">
+						<div class = "form-group" th:each = "opera : ${opere}">
+							<label for = "elenco-stanze" th:text = "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|"></label>
+							<select class = "form-control" id = "elenco-stanze" th:field = "*{autore}">
+								<option selected = "selected" th:value = "null"> -- Seleziona una stanza -- </option>
+								<option th:each = "stanza : ${stanze}" th:text = "${stanza.nome}" th:value = "${stanza.id}"></option>
+							</select>
 						</div>
 						<div class = "form-group form-inline">
 							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
