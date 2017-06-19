@@ -5,51 +5,53 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"utente_id", "authority"})})
 public class Authorities {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
 	@OneToOne
-	private Users username;
+	private Utente utente;
 	
 	@NotNull
-	private String authoriry;
-	
+	private String authority;
+
 	public Authorities() {}
-	
-	public Authorities(Users user, String authority) {
-		this.username = user;
-		this.authoriry = authority;
+
+	public Authorities(Utente utente, String authority) {
+		this.utente = utente;
+		this.authority = authority;
 	}
 
 	public Long getId() {
 		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Users getUsername() {
-		return username;
+	
+	public Utente getUtente() {
+		return utente;
 	}
-
-	public void setUsername(Users username) {
-		this.username = username;
+	
+	public void setUtente(Utente utente) {
+		this.utente = utente;
 	}
-
-	public String getAuthoriry() {
-		return authoriry;
+	
+	public String getAuthority() {
+		return authority;
 	}
-
-	public void setAuthoriry(String authoriry) {
-		this.authoriry = authoriry;
+	
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 
 }

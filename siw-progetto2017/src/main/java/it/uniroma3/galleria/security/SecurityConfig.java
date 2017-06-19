@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		auth.jdbcAuthentication().dataSource(dataSource)
 			.usersByUsernameQuery("SELECT username,password,enabled FROM users WHERE username=?")
-			.authoritiesByUsernameQuery("SELECT username,authority FROM authorities WHERE username=?");
+			.authoritiesByUsernameQuery("SELECT username,authority FROM users u JOIN authorities a ON u.id=a.utente_id WHERE username=?");
 	}
 	
 	@Override
