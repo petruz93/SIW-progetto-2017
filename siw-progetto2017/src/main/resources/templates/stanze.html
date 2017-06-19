@@ -8,7 +8,7 @@
 		<link rel = "stylesheet" href = "css/galleria.css"/>
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
 		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>	
-		<title> Elenco autori </title>
+		<title> Elenco stanze </title>
 	</head>
 	<body>
 		<nav class = "navbar navbar-default navbar-fixed-top">
@@ -44,13 +44,13 @@
 				<table>
 					<tr th:each = "stanza : ${stanze}">
 						<td>
-							<form action = "#" th:action = "@{/updateAutore}" method = "post">
+							<form action = "#" th:action = "@{/removeStanza}" method = "post">
 								<input type = "hidden" name = "id" th:value = "${stanza.id}"/>
-								<input class = "form-control" type = "submit" name = "comando" value = "modifica"/>
+								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
 							</form>
 						</td>
 						<td>
-							<a class = "undecorated-link" href = "/showStanza/${stanza.id}" th:text =  "${stanza.nome}"></a>
+							<a class = "undecorated-link" href = "stanza.html" th:href = "@{/showStanza(id = ${stanza.id})}" th:text = "${stanza.nome}"></a>
 						</td>
 					</tr>
 				</table>
