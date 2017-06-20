@@ -30,12 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.csrf().disable()
 		.authorizeRequests()
-			.antMatchers("modifica", "inserimento", "amministrazione", "/removeOpera", "/removeAutore", "/removeStanza", "/updateStanza")
+			.antMatchers("/addOpera", "/inserimento", "/amministrazione", "/removeOpera", "/removeAutore", "/removeStanza", "/updateStanza")
 			.hasAuthority("ROLE_ADMIN")
 			.anyRequest().permitAll()
 			.and()
 		.formLogin()
-			.loginPage("/login").permitAll()
+			.loginPage("/login")
+			.permitAll()
 			.and()
 		.logout()
 			.permitAll();

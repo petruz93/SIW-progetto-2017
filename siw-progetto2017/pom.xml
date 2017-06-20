@@ -57,14 +57,10 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-<!--
 		<dependency>
-		    <groupId>org.thymeleaf</groupId>
-		    <artifactId>thymeleaf-spring3</artifactId>
-		    <version>3.0.6.RELEASE</version>
+		    <groupId>org.thymeleaf.extras</groupId>
+		    <artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
--->
-		
 	</dependencies>
 
 	<build>
