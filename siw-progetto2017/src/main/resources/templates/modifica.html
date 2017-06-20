@@ -23,7 +23,7 @@
 					<form action = "#" th:action = "@{/admin/updateAutore}" th:object = "${autore}" method = "post">
 						<div class = "form-group">
 		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "#{label.mandatory}"></span>
-		                    <input class = "form-control" type = "text" th:field = "*{nome}" th:value = "${autore.nome}" placeholder = "Nome"/>
+		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
 						</div>
 						<div class = "form-group">
 		                    <label> Cognome* </label> <span th:if = "${#fields.hasErrors('cognome')}" th:text = "#{label.mandatory}"></span>

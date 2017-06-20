@@ -20,6 +20,7 @@
 				<div class = "col-md-4"></div>
 				<div class = "col-md-4">
 					<h2 style = "text-align: center;"> Inserimento autore </h2>
+					<label th:text = "${entityError}"></label>
 					<form action = "#" th:action = "@{/admin/addAutore}" th:object = "${autore}" method = "post">
 						<div class = "form-group">
 		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "#{label.mandatory}"></span>
@@ -53,6 +54,7 @@
 				<div class = "col-md-4"></div>
 				<div class = "col-md-4">
 					<h2 style = "text-align: center;"> Inserimento opera </h2>
+					<label th:text = "${entityError}"></label>
 					<form action = "#" th:action = "@{/admin/addOpera}" th:object = "${opera}" method = "post">
 						<div class = "form-group">
 		                    <label> Titolo* </label> <span th:if = "${#fields.hasErrors('titolo')}" th:text = "#{label.mandatory}"></span>
@@ -97,6 +99,7 @@
 				<div class = "col-md-4"></div>
 				<div class = "col-md-4">
 					<h2 style = "text-align: center;"> Inserimento stanza </h2>
+					<label th:text = "${entityError}"></label>
 					<form action = "#" th:action = "@{/admin/addStanza}" th:object = "${stanza}" method = "post">
 						<div class = "form-group">
 		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "#{label.mandatory}"></span>

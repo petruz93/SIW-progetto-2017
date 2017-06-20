@@ -27,12 +27,6 @@
 									<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
 								</form>
 							</td>
-							<td sec:authorize = "hasRole('ROLE_ADMIN')">
-								<form action = "#" th:action = "@{/admin/updateStanza}" method = "get">
-									<input type = "hidden" name = "id" th:value = "${stanza.id}"/>
-									<input class = "form-control" type = "submit" name = "comando" value = "modifica"/>
-								</form>
-							</td>
 							<td>
 								<a class = "undecorated-link" th:href = "@{/showStanza(id = ${stanza.id})}" th:text = "${stanza.nome}"></a>
 							</td>
