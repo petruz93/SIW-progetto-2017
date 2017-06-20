@@ -20,13 +20,13 @@ public class AutoreController {
 	@Autowired
 	private AutoreService autoreService;
 	
-	@GetMapping("/addAutore")
+	@GetMapping("/admin/addAutore")
 	public String showForm(Autore autore, Model model) {
 		model.addAttribute("formAutore", true);
 		return "inserimento";
 	}
 	
-	@PostMapping("/addAutore")
+	@PostMapping("/admin/addAutore")
 	public String checkAutoreInfo(@Valid @ModelAttribute Autore autore,
 									BindingResult bindingResult, Model model) {
 		
@@ -52,7 +52,7 @@ public class AutoreController {
 		return "infoAutore";
 	}
 	
-	@PostMapping("/removeAutore")
+	@PostMapping("/admin/removeAutore")
 	public String removeAutore(@RequestParam Long id) {
 		this.autoreService.removeById(id);
 		return "redirect:/listAutori";

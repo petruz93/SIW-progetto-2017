@@ -13,31 +13,31 @@ public class MainController {
 	@Autowired
 	private StanzaService stanzaService;
 	
-	@RequestMapping(value={"/","index"})
+	@RequestMapping(value={"/", "/index", "/admin"})
 	public String home(Model model) {
 		model.addAttribute("stanze", this.stanzaService.findAll());
 		return "index";
 	}
 	
-	@RequestMapping("contatti")
+	@RequestMapping("/contatti")
 	public String contatti() {
 		return "contatti";
 	}
 	
-	@RequestMapping("amministrazione")
+	@RequestMapping("/admin/amministrazione")
 	public String amministrazione() {
 		return "amministrazione";
 	}
 	
 	@RequestMapping("/login")
 	public String login() {
-		return "login";
+		return "/index";
 	}
 	
 	@RequestMapping("/login-error.html")
 	public String loginError(Model model) {
 		model.addAttribute("loginError", true);
-		return "login";
+		return "/index";
 	}
 
 }

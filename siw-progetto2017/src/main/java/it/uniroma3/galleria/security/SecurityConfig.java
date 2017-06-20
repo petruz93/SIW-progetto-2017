@@ -30,16 +30,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.csrf().disable()
 		.authorizeRequests()
-			.antMatchers("/addOpera", "/inserimento", "/amministrazione", "/removeOpera", "/removeAutore", "/removeStanza", "/updateStanza")
-			.hasAuthority("ROLE_ADMIN")
+			.antMatchers("/","/index","/contatti","/login","/logout").permitAll()
+			.antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
 			.anyRequest().permitAll()
 			.and()
 		.formLogin()
-			.loginPage("/login")
-			.permitAll()
+			.loginPage("/login").permitAll()
 			.and()
 		.logout()
-			.permitAll();
+			.logoutSuccessUrl("/index?logout").permitAll();
 	}
 
 }

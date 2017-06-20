@@ -25,14 +25,14 @@ public class StanzaController {
 	@Autowired
 	private OperaService operaService;
 	
-	@GetMapping("/addStanza")
+	@GetMapping("/admin/addStanza")
 	public String showForm(Stanza stanza, Model model) {
 		model.addAttribute("formStanza", true);
 		model.addAttribute("opere", this.operaService.findAll());
 		return "inserimento";
 	}
 	
-	@PostMapping("/addStanza")
+	@PostMapping("/admin/addStanza")
 	public String checkStanzaInfo(@Valid @ModelAttribute Stanza stanza,
 									BindingResult bindingResult, Model model) {
 		
@@ -59,13 +59,13 @@ public class StanzaController {
 		return "infoStanza";
 	}
 	
-	@PostMapping("/removeStanza")
+	@PostMapping("/admin/removeStanza")
 	public String removeStanza(@RequestParam Long id) {
 		this.stanzaService.removeById(id);
 		return "redirect:/listStanze";
 	}
 	
-	@PostMapping("/updateStanza")
+	@PostMapping("/admin/updateStanza")
 	public String moveOpera(@RequestParam Long opera_id, @RequestParam Long stanza_src,
 								@RequestParam Long stanza_dest, Model model) {
 		
@@ -75,7 +75,8 @@ public class StanzaController {
 		src.getOpere().remove(opera);
 		dest.getOpere().add(opera);
 		this.stanzaService.update(src, dest);
-		return infoStanza(stanza_src, model);
+//		return infoStanza(stanza_src, model);
+		return "redirect:/showStanza?id="+ stanza_src.toString();
 	}
 
 }

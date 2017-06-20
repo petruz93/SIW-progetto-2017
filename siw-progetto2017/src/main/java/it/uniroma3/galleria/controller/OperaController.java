@@ -24,7 +24,7 @@ public class OperaController {
 	@Autowired
 	private AutoreService autoreService;
 	
-	@GetMapping("/addOpera")
+	@GetMapping("/admin/addOpera")
 	public String showForm(Opera opera, Model model) {
 		model.addAttribute("formOpera", true);
 		Iterable<Autore> autori = this.autoreService.findAll();
@@ -32,7 +32,7 @@ public class OperaController {
 		return "inserimento";
 	}
 	
-	@PostMapping("/addOpera")
+	@PostMapping("/admin/addOpera")
 	public String checkOperaInfo(@Valid @ModelAttribute Opera opera,
 									BindingResult bindingResult, Model model) {
 		
@@ -58,7 +58,7 @@ public class OperaController {
 		return "infoOpera";
 	}
 	
-	@PostMapping("/removeOpera")
+	@PostMapping("/admin/removeOpera")
 	public String removeOpera(@RequestParam Long id) {
 		this.operaService.removeById(id);
 		return "redirect:/listOpere";
