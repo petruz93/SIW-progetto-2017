@@ -33,8 +33,6 @@ public class AutoreController {
 		if (bindingResult.hasErrors()) {
 			return showForm(autore, model);
 		}
-		// [TODO] inserimento duplicati
-		
 		try {
 			this.autoreService.add(autore);
 		} catch (Exception e) {

@@ -39,8 +39,12 @@ public class OperaController {
 		if (bindingResult.hasErrors()) {
 			return showForm(opera, model);
 		}
-		// [TODO] inserimento duplicati
-		this.operaService.add(opera);
+		try {
+			this.operaService.add(opera);
+		} catch (Exception e) {
+			model.addAttribute("entityError", "Opera già presente nella galleria");
+			return showForm(opera, model);
+		}
 		return "redirect:/listOpere";
 	}
 	
@@ -68,6 +72,7 @@ public class OperaController {
 	public String showUpdateOpera(@RequestParam Long id, Opera opera, Model model) {
 		model.addAttribute("formOpera", true);
 		opera = this.operaService.findById(id);
+		model.addAttribute("opera", opera);
 		model.addAttribute("autori", this.autoreService.findAll());
 		return "modifica";
 	}

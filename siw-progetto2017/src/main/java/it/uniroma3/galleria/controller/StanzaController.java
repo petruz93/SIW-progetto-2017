@@ -39,8 +39,12 @@ public class StanzaController {
 		if (bindingResult.hasErrors()) {
 			return showForm(stanza, model);
 		}
-		// [TODO] inserimento duplicati
-		this.stanzaService.add(stanza);
+		try {
+			this.stanzaService.add(stanza);
+		} catch (Exception e) {
+			model.addAttribute("entityError", "Stanza già presente nella galleria");
+			return showForm(stanza, model);
+		}
 		return "redirect:/listStanze";
 	}
 	
