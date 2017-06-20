@@ -39,6 +39,8 @@ public class Opera {
 	@Min(0)
 	private Integer larghezza;
 	
+	private String url;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@NotNull
 	private Autore autore;
@@ -52,6 +54,11 @@ public class Opera {
 		this.altezza = altezza;
 		this.larghezza = larghezza;
 		this.autore = autore;
+	}
+	
+	public Opera(String titolo, Integer anno, String tecnica, Integer larghezza, Integer altezza, Autore autore, String url) {
+		this(titolo, anno, tecnica, larghezza, altezza, autore);
+		this.url = url;
 	}
 
 	public Long getId() {
@@ -108,6 +115,14 @@ public class Opera {
 
 	public void setAutore(Autore autore) {
 		this.autore = autore;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package it.uniroma3.galleria.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -31,14 +32,17 @@ public class Stanza {
 	@JoinColumn(name="stanza_id")
 	private List<Opera> opere;
 	
-	public Stanza() {}
+	public Stanza() {
+		this.opere = new ArrayList<>();
+	}
 	
 	public Stanza(String nome) {
+		this();
 		this.nome = nome;
 	}
 	
 	public Stanza(String nome, String descrizione) {
-		this.nome = nome;
+		this(nome);
 		this.descrizione = descrizione;
 	}
 

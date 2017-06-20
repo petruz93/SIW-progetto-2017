@@ -1,5 +1,6 @@
 package it.uniroma3.galleria.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,12 +45,17 @@ public class Autore {
 	@Temporal(TemporalType.DATE)
 	private Date dataMorte;
 	
+	private String url;
+	
 	@OneToMany(mappedBy="autore", fetch=FetchType.LAZY, cascade={CascadeType.REMOVE})
 	private List<Opera> opere;
 	
-	public Autore() {}
+	public Autore() {
+		this.opere = new ArrayList<>();
+	}
 	
 	public Autore(String nome, String cognome, String nazione, Date nascita) {
+		this();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.nazione = nazione;
@@ -57,11 +63,19 @@ public class Autore {
 	}
 	
 	public Autore(String nome, String cognome, String nazione, Date nascita, Date morte) {
-		this.nome = nome;
-		this.cognome = cognome;
-		this.nazione = nazione;
-		this.dataNascita = nascita;
+		this(nome, cognome, nazione, nascita);
 		this.dataMorte = morte;
+	}
+	
+	public Autore(String nome, String cognome, String nazione, Date nascita, String url) {
+		this(nome, cognome, nazione, nascita);
+		this.url = url;
+	}
+	
+	public Autore(String nome, String cognome, String nazione, Date nascita, Date morte, String url) {
+		this(nome, cognome, nazione, nascita);
+		this.dataMorte = morte;
+		this.url = url;
 	}
 
 	public Long getId() {
@@ -110,6 +124,14 @@ public class Autore {
 
 	public void setDataMorte(Date dataMorte) {
 		this.dataMorte = dataMorte;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public List<Opera> getOpere() {
