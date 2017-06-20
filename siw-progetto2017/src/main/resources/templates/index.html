@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org" xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th = "http://www.thymeleaf.org">
 	<head>
 		<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"/>
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
@@ -12,47 +12,8 @@
 		<title> Home Galleria </title>
 	</head>
 	<body>
-		<nav class = "navbar navbar-default" th:fragment = "nav-content">
-			<div class = "container-fluid">
-				<div class="navbar-header">
-					<button type = "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "#galleria-navbar">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>                        
-					</button>
-					<a class = "navbar-brand" href = "/index"> Galleria </a>
-				</div>
-				<div class = "collapse navbar-collapse" id = "galleria-navbar">
-					<ul class = "nav navbar-nav">
-						<li> <a href = "/index"> Home </a> </li>
-						<li> <a href = "/listStanze"> Stanze </a> </li>
-						<li> <a href = "/listOpere"> Opere </a> </li>
-						<li> <a href = "/listAutori"> Autori </a> </li>
-						<li> <a href = "/contatti"> Contatti </a> </li>
-						<li sec:authorize = "hasRole('ROLE_ADMIN')">
-							<a href = "/admin/amministrazione"> Amministrazione </a>
-						</li>
-					</ul>
-					<div class = "nav navbar-nav navbar-right" id = "form-container">
-						<div sec:authorize = "!isAuthenticated()" class = "navbar-form">
-							<form class = "navbar-form" th:action = "@{/login}" method = "post">
-								<div class = "form-group form-inline">
-									<script th:if = "${param.error}"> alert("Username o password non validi!"); </script>
-									<script th:if = "${param.logout}"> alert("Logout eseguito con successo!"); </script>
-									<input class = "form-control" type = "text" name = "username" placeholder = "Username"></input>
-									<input class = "form-control" type = "password" name = "password" placeholder = "Password"></input>
-									<button class = "form-control" type = "submit"> <i class = "glyphicon glyphicon-log-in"> </i> Login </button>
-								</div>
-							</form>	
-						</div>
-						<div sec:authorize = "isAuthenticated()">
-							<form class = "navbar-form" th:action = "@{/logout}" method = "post">
-								<button class = "form-control" type = "submit"> <i class = "glyphicon glyphicon-log-out"> </i> Logout </button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+		<nav class = "navbar navbar-default">
+			<div th:include = "fragments :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid">
 			<div class = "row">
@@ -64,76 +25,13 @@
 			</div>
 			<div class = "row">
 				<div class = "col-md-2"></div>
-				<div id = "myCarousel" class = "carousel slide col-md-8" data-ride = "carousel">
-					<!-- Indicatori -->
-					<ol class = "carousel-indicators">
-						<li th:each = "stanza, iterStat : ${stanze}" data-target = "#myCarousel" data-slide-to = "${iterStat.index}" class = "active"></li>
-					</ol>			
-					<!-- Contenitore immagini scorrevoli -->
-					<div class = "carousel-inner">
-						<!-- Immagine stanza -->
-						<div th:each = "stanza, iterStat : ${stanze}" th:if = "${iterStat.index == 0}" class = "item active">
-							<img class = "img-responsive" src = "img/informazione-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: 100%; height: auto;"/>
-							<div class = "carousel-caption">
-								<h3 th:text = "${stanza.nome}"></h3>
-							</div>
-						</div>
-						<div th:each = "stanza, iterStat : ${stanze}" th:if = "${iterStat.index > 0}" class = "item">
-							<img class = "img-responsive" src = "img/informazione-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: 100%; height: auto;"/>
-							<div class = "carousel-caption">
-								<h3 th:text = "${stanza.nome}"></h3>
-							</div>
-						</div>
-					</div>
-					<!-- Tasto immagine precedente (sinistra) -->
-					<a class = "left carousel-control" href = "#myCarousel" data-slide = "prev">
-						<span class = "glyphicon glyphicon-chevron-left"></span>
-						<span class = "sr-only"> Precendente </span>
-					</a>
-					<!-- Tasto immagine successiva (destra) -->
-					<a class = "right carousel-control" href = "#myCarousel" data-slide = "next">
-						<span class = "glyphicon glyphicon-chevron-right"></span>
-						<span class = "sr-only"> Successiva </span>
-					</a>
+				<div class = "col-md-8">
+					<footer>
+						<div th:include = "fragments :: footer-content"></div>
+					</footer>
 				</div>
 				<div class = "col-md-2"></div>
 			</div>
 		</div>
-		<footer>
-			<div class = "container-fluid" th:fragment = "footer-content">
-				<div class = "row">
-					<div class = "col-md-2"></div>
-					<div class = "col-md-4">
-						<ul style = "list-style: none;">
-							<li> <p> Progetto giugno 2017 </p> </li>
-							<li> <p> Sistemi Informativi su Web </p> </li>
-							<li> <p> <a href = "http://informatica.ing.uniroma3.it"> <img src = "img/roma-tre-logo.png" alt = "roma-tre-logo.png" style = "width: auto;"/> </a> </p> </li>
-						</ul>
-					</div>
-					<div class = "col-md-4">
-						<ul style = "list-style: none;">
-							<li>
-								<p> Powered and designed by </p>
-							</li>
-							<li>
-								<p>
-									<a class = "undecorated-link" href = "#"> Matteo Petruzziello</a>
-									<a class = "undecorated-link" href = "https://www.facebook.com/matteo.petruzziello"> <i class = "fa fa-facebook-square"></i> </a>
-									<a class = "undecorated-link" href = "https://github.com/petruz93"> <i class = "fa fa-github-square"></i> </a>
-								</p>
-							</li>
-							<li>
-								<p>
-									<a class = "undecorated-link" href = "#"> Marco Peroni </a>
-									<a class = "undecorated-link" href = "https://www.facebook.com/QuelBelPargolo"> <i class = "fa fa-facebook-square"></i> </a>
-									<a class = "undecorated-link" href = "https://github.com/Pargolo"> <i class = "fa fa-github-square"></i> </a>
-								</p>									
-							</li>
-						</ul>
-					</div>
-					<div class = "col-md-2"></div>
-				</div>
-			</div>
-		</footer>
 	</body>
 </html>

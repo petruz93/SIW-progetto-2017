@@ -13,48 +13,56 @@
 	</head>
 	<body>
 		<nav class = "navbar navbar-default">
-			<div th:include = "index :: nav-content"></div>
+			<div th:include = "fragments :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid">
-			<div class = "col-md-2"></div>
-			<div class = "col-md-8">
-				<h2 th:text = "${stanza.nome}" style = "text-align: center;"></h2>
-				<p th:text = "${stanza.descrizione}"></p>
-				<div class = "container-fluid" th:if = "${not #lists.isEmpty(stanza.opere)}">
-					<div class = "row">
-						<div class = "thumbnail col-md-3" sec:authorize = "hasRole('ROLE_ADMIN')" th:each = "opera : ${stanza.opere}">
-							<p th:text = "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|" style = "text-align: center;"></p>
-							<a class = "undecorated-link" th:href = "@{/showOpera(id = ${opera.id})}">
-								<img src = "img/informazione-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: auto;"/>
-							</a>
-							<div class = "caption">
-								<form action = "#" th:action = "@{/admin/removeOpera}" method = "post">
-									<input type = "hidden" name = "id" th:value = "${opera.id}"/>
-									<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
-								</form>
-								<form action = "#" th:action = "@{/admin/updateStanza}" method = "post">
-									<input type = "hidden" name = "opera_id" th:value = "${opera.id}"/>
-									<input type = "hidden" name = "stanza_src" th:value = "${stanza.id}"/>
-									<label for = "elenco-stanze"> Nuova stanza </label>
-									<select class = "form-control" id = "elenco-stanze" name = "stanza_dest">
-										<option th:each = "stanzaDisponibile : ${stanze}" th:text = "${stanzaDisponibile.nome}" th:value = "${stanzaDisponibile.id}"></option>
-									</select>
-									<input class = "form-control" type = "submit" name = "comando" value = "sposta"/>
-								</form>
+			<div class = "row">
+				<div class = "col-md-2"></div>
+				<div class = "col-md-8">
+					<h2 th:text = "${stanza.nome}" style = "text-align: center;"></h2>
+					<p th:text = "${stanza.descrizione}"></p>
+					<div class = "container-fluid" th:if = "${not #lists.isEmpty(stanza.opere)}">
+						<div class = "row">
+							<div class = "thumbnail col-md-3" sec:authorize = "hasRole('ROLE_ADMIN')" th:each = "opera : ${stanza.opere}">
+								<p th:text = "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|" style = "text-align: center;"></p>
+								<a class = "undecorated-link" th:href = "@{/showOpera(id = ${opera.id})}">
+									<img src = "img/opera-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: auto;"/>
+								</a>
+								<div class = "caption">
+									<form action = "#" th:action = "@{/admin/removeOpera}" method = "post">
+										<input type = "hidden" name = "id" th:value = "${opera.id}"/>
+										<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
+									</form>
+									<form action = "#" th:action = "@{/admin/updateStanza}" method = "post">
+										<input type = "hidden" name = "opera_id" th:value = "${opera.id}"/>
+										<input type = "hidden" name = "stanza_src" th:value = "${stanza.id}"/>
+										<label for = "elenco-stanze"> Nuova stanza </label>
+										<select class = "form-control" id = "elenco-stanze" name = "stanza_dest">
+											<option th:each = "stanzaDisponibile : ${stanze}" th:text = "${stanzaDisponibile.nome}" th:value = "${stanzaDisponibile.id}"></option>
+										</select>
+										<input class = "form-control" type = "submit" name = "comando" value = "sposta"/>
+									</form>
+								</div>
 							</div>
-						</div>
-						<div class = "col-md-3" sec:authorize = "!hasRole('ROLE_ADMIN')" th:each = "opera : ${stanza.opere}">
-							<a th:href = "@{/showOpera(id = ${opera.id})}">
-								<img class = "img-responsive img-rounded" src = "img/informazione-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: auto;"/>
-							</a>
+							<div class = "col-md-3" sec:authorize = "!hasRole('ROLE_ADMIN')" th:each = "opera : ${stanza.opere}">
+								<a th:href = "@{/showOpera(id = ${opera.id})}">
+									<img class = "img-responsive img-rounded" src = "img/opera-sconosciuta.jpg" alt = "Immagine sconosciuta"/>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div class = "col-md-2"></div>
 			</div>
-			<div class = "col-md-2"></div>
+			<div class = "row">
+				<div class = "col-md-2"></div>
+				<div class = "col-md-8">
+					<footer>
+						<div th:include = "fragments :: footer-content"></div>
+					</footer>
+				</div>
+				<div class = "col-md-2"></div>
+			</div>
 		</div>
-		<footer>
-			<div th:include = "index :: footer-content"></div>
-		</footer>
 	</body>
 </html>

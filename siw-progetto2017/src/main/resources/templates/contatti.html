@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<nav class = "navbar navbar-default">
-			<div th:include = "index :: nav-content"></div>
+			<div th:include = "fragments :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid">
 			<div class = "row">
@@ -65,9 +65,15 @@
 				</div>
 				<div class = "col-md-2"></div>
 			</div>
+			<div class = "row">
+				<div class = "col-md-2"></div>
+				<div class = "col-md-8">
+					<footer>
+						<div th:include = "fragments :: footer-content"></div>
+					</footer>
+				</div>
+				<div class = "col-md-2"></div>
+			</div>
 		</div>
-		<footer>
-			<div th:include = "index :: footer-content"></div>
-		</footer>
 	</body>
 </html>

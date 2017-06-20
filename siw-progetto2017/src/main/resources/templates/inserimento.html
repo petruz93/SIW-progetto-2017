@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<nav class = "navbar navbar-default">
-			<div th:include = "index :: nav-content"></div>
+			<div th:include = "fragments :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid contenitore">
 			<div class = "row" th:if = "${formAutore}">
@@ -22,23 +22,23 @@
 					<h2 style = "text-align: center;"> Inserimento autore </h2>
 					<form action = "#" th:action = "@{/admin/addAutore}" th:object = "${autore}" method = "post">
 						<div class = "form-group">
-		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "Errore"></span>
+		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Cognome* </label> <span th:if = "${#fields.hasErrors('cognome')}" th:text = "Errore"></span>
+		                    <label> Cognome* </label> <span th:if = "${#fields.hasErrors('cognome')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{cognome}" placeholder = "Cognome"/>						
 						</div>
 						<div class = "form-group">
-		                    <label> Nazione* </label> <span th:if = "${#fields.hasErrors('nazione')}" th:text = "Errore"></span>
+		                    <label> Nazione* </label> <span th:if = "${#fields.hasErrors('nazione')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{nazione}" placeholder = "Nazione"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Data di nascita* </label> <span th:if = "${#fields.hasErrors('dataNascita')}" th:text = "Errore"></span>
+		                    <label> Data di nascita* </label> <span th:if = "${#fields.hasErrors('dataNascita')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{dataNascita}" placeholder = "Data di nascita"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Data di morte </label> <span th:if = "${#fields.hasErrors('dataMorte')}" th:text = "Errore"></span>
+		                    <label> Data di morte </label> <span th:if = "${#fields.hasErrors('dataMorte')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{dataMorte}" placeholder = "Data di morte"/>
 						</div>
 						<div class = "form-group form-inline">
@@ -55,27 +55,27 @@
 					<h2 style = "text-align: center;"> Inserimento opera </h2>
 					<form action = "#" th:action = "@{/admin/addOpera}" th:object = "${opera}" method = "post">
 						<div class = "form-group">
-		                    <label> Titolo* </label> <span th:if = "${#fields.hasErrors('titolo')}" th:text = "#{label.campo.obbligatorio}"></span>
+		                    <label> Titolo* </label> <span th:if = "${#fields.hasErrors('titolo')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{titolo}" placeholder = "Titolo"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Anno di realizzazione* </label> <span th:if = "${#fields.hasErrors('anno')}" th:text = "Errore"></span>
+		                    <label> Anno di realizzazione* </label> <span th:if = "${#fields.hasErrors('anno')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{anno}" placeholder = "Anno di realizzazione"/>							
 						</div>
 						<div class = "form-group">
-		                    <label> Tecnica usata* </label> <span th:if = "${#fields.hasErrors('tecnica')}" th:text = "Errore"></span>
+		                    <label> Tecnica usata* </label> <span th:if = "${#fields.hasErrors('tecnica')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{tecnica}" placeholder = "Tecnica usata"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Altezza* </label> <span th:if = "${#fields.hasErrors('altezza')}" th:text = "Errore"></span>
+		                    <label> Altezza* </label> <span th:if = "${#fields.hasErrors('altezza')}" th:text = "#{label.mandatory}"></span>
 							<input class = "form-control" type = "text" th:field = "*{altezza}" placeholder = "Altezza"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Larghezza* </label> <span th:if = "${#fields.hasErrors('larghezza')}" th:text = "Errore"></span>
+		                    <label> Larghezza* </label> <span th:if = "${#fields.hasErrors('larghezza')}" th:text = "#{label.mandatory}"></span>
 		    				<input class = "form-control" type = "text" th:field = "*{larghezza}" placeholder = "Larghezza"/>
 						</div>
 						<div class = "form-group">
-							<label for = "elenco-autori"> Autore* </label> <span th:if = "${#fields.hasErrors('autore')}" th:text = "Errore"></span>
+							<label for = "elenco-autori"> Autore* </label> <span th:if = "${#fields.hasErrors('autore')}" th:text = "#{label.mandatory}"></span>
 							<select class = "form-control" id = "elenco-autori" th:field = "*{autore}">
 								<option selected = "selected" th:value = "null"> -- Seleziona un autore -- </option>
 								<option th:each = "autore : ${autori}" th:text = "|${autore.nome} ${autore.cognome}|" th:value = "${autore.id}"></option>
@@ -83,7 +83,7 @@
 						</div>
 						<div class = "form-group">
 							<label> Immagine </label> <!-- <span th:if = "${#fields.hasErrors('url')}" th:text = "Errore"></span> -->
-							<input class = "form-control" type = "file" th:field = "*{url}"></input>
+							<input class = "form-control" type = "file" name = "file"></input>
 						</div>
 						<div class = "form-group form-inline">
 							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
@@ -99,11 +99,11 @@
 					<h2 style = "text-align: center;"> Inserimento stanza </h2>
 					<form action = "#" th:action = "@{/admin/addStanza}" th:object = "${stanza}" method = "post">
 						<div class = "form-group">
-		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "Errore"></span>
+		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
 						</div>
 						<div class = "form-group">
-		                    <label> Descrizione* </label> <span th:if = "${#fields.hasErrors('descrizione')}" th:text = "Errore"></span>
+		                    <label> Descrizione* </label> <span th:if = "${#fields.hasErrors('descrizione')}" th:text = "#{label.mandatory}"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{descrizione}" placeholder = "Descrizione"/>							
 						</div>
 						<div class = "form-group">
@@ -117,9 +117,15 @@
 				</div>
 				<div class = "col-md-4"></div>
 			</div>
+			<div class = "row">
+				<div class = "col-md-2"></div>
+				<div class = "col-md-8">
+					<footer>
+						<div th:include = "fragments :: footer-content"></div>
+					</footer>
+				</div>
+				<div class = "col-md-2"></div>
+			</div>
 		</div>
-		<footer>
-			<div th:include = "index :: footer-content"></div>
-		</footer>
 	</body>
 </html>

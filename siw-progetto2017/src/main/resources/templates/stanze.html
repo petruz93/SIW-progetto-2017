@@ -13,35 +13,43 @@
 	</head>
 	<body>
 		<nav class = "navbar navbar-default">
-			<div th:include = "index :: nav-content"></div>
+			<div th:include = "fragments :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid">
-			<div class = "col-md-2"></div>
-			<div class = "col-md-4" th:if = "${not #lists.isEmpty(stanze)}">
-				<table>
-					<tr th:each = "stanza : ${stanze}">
-						<td sec:authorize = "hasRole('ROLE_ADMIN')">
-							<form action = "#" th:action = "@{/admin/removeStanza}" method = "post">
-								<input type = "hidden" name = "id" th:value = "${stanza.id}"/>
-								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
-							</form>
-						</td>
-						<td sec:authorize = "hasRole('ROLE_ADMIN')">
-							<form action = "#" th:action = "@{/admin/updateStanza}" method = "get">
-								<input type = "hidden" name = "id" th:value = "${stanza.id}"/>
-								<input class = "form-control" type = "submit" name = "comando" value = "modifica"/>
-							</form>
-						</td>
-						<td>
-							<a class = "undecorated-link" th:href = "@{/showStanza(id = ${stanza.id})}" th:text = "${stanza.nome}"></a>
-						</td>
-					</tr>
-				</table>
+			<div class = "row">
+				<div class = "col-md-2"></div>
+				<div class = "col-md-4" th:if = "${not #lists.isEmpty(stanze)}">
+					<table>
+						<tr th:each = "stanza : ${stanze}">
+							<td sec:authorize = "hasRole('ROLE_ADMIN')">
+								<form action = "#" th:action = "@{/admin/removeStanza}" method = "post">
+									<input type = "hidden" name = "id" th:value = "${stanza.id}"/>
+									<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
+								</form>
+							</td>
+							<td sec:authorize = "hasRole('ROLE_ADMIN')">
+								<form action = "#" th:action = "@{/admin/updateStanza}" method = "get">
+									<input type = "hidden" name = "id" th:value = "${stanza.id}"/>
+									<input class = "form-control" type = "submit" name = "comando" value = "modifica"/>
+								</form>
+							</td>
+							<td>
+								<a class = "undecorated-link" th:href = "@{/showStanza(id = ${stanza.id})}" th:text = "${stanza.nome}"></a>
+							</td>
+						</tr>
+					</table>
+				<div class = "col-md-6"></div>
 			</div>
-			<div class = "col-md-6"></div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-2"></div>
+				<div class = "col-md-8">
+					<footer>
+						<div th:include = "fragments :: footer-content"></div>
+					</footer>
+				</div>
+				<div class = "col-md-2"></div>
+			</div>
 		</div>
-		<footer>
-			<div th:include = "index :: footer-content"></div>
-		</footer>
 	</body>
 </html>

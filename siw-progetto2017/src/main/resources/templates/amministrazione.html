@@ -13,21 +13,27 @@
 	</head>
 	<body>
 		<nav class = "navbar navbar-default">
-			<div th:include = "index :: nav-content"></div>
+			<div th:include = "fragments :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid">
 			<div class = "row">
-				<div class = "col-md-4"></div>
-				<div class = "col-md-4">
-					<p> <a href = "/admin/addAutore"> Inserisci un nuovo autore </a> </p>
-					<p> <a href = "/admin/addOpera"> Inserisci una nuova opera </a> </p>
-					<p> <a href = "/admin/addStanza"> Inserisci una nuova stanza </a> </p>
+				<div class = "col-md-2"></div>
+				<div class = "col-md-8" style = "text-align: center;">
+					<p> <a class = "undecorated-link" href = "/admin/addAutore"> Inserisci un nuovo autore </a> </p>
+					<p> <a class = "undecorated-link" href = "/admin/addOpera"> Inserisci una nuova opera </a> </p>
+					<p> <a class = "undecorated-link" href = "/admin/addStanza"> Inserisci una nuova stanza </a> </p>
 				</div>
-				<div class = "col-md-4"></div>
+				<div class = "col-md-2"></div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-2"></div>
+				<div class = "col-md-8">
+					<footer>
+						<div th:include = "fragments :: footer-content"></div>
+					</footer>
+				</div>
+				<div class = "col-md-2"></div>
 			</div>
 		</div>
-		<footer>
-			<div th:include = "index :: footer-content"></div>
-		</footer>
 	</body>
 </html>
