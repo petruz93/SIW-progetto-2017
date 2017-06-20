@@ -34,7 +34,13 @@ public class AutoreController {
 			return showForm(autore, model);
 		}
 		// [TODO] inserimento duplicati
-		this.autoreService.add(autore);
+		
+		try {
+			this.autoreService.add(autore);
+		} catch (Exception e) {
+			model.addAttribute("entityError", "Autore già presente nella galleria");
+			return showForm(autore, model);
+		}
 		return "redirect:/listAutori";
 	}
 	
@@ -62,6 +68,7 @@ public class AutoreController {
 	public String showUpdateAutore(@RequestParam Long id, Autore autore, Model model) {
 		model.addAttribute("formAutore", true);
 		autore = this.autoreService.findById(id);
+		model.addAttribute("autore", autore);
 		return "modifica";
 	}
 	
