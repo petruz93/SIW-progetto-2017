@@ -20,7 +20,7 @@
 				<div class = "col-md-4"></div>
 				<div class = "col-md-4">
 					<h2 style = "text-align: center;"> Inserimento autore </h2>
-					<form action = "#" th:action = "@{/addAutore}" th:object = "${autore}" method = "post">
+					<form action = "#" th:action = "@{/admin/addAutore}" th:object = "${autore}" method = "post">
 						<div class = "form-group">
 		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
@@ -53,7 +53,7 @@
 				<div class = "col-md-4"></div>
 				<div class = "col-md-4">
 					<h2 style = "text-align: center;"> Inserimento opera </h2>
-					<form action = "#" th:action = "@{/addOpera}" th:object = "${opera}" method = "post">
+					<form action = "#" th:action = "@{/admin/addOpera}" th:object = "${opera}" method = "post">
 						<div class = "form-group">
 		                    <label> Titolo* </label> <span th:if = "${#fields.hasErrors('titolo')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{titolo}" placeholder = "Titolo"/>
@@ -93,7 +93,7 @@
 				<div class = "col-md-4"></div>
 				<div class = "col-md-4">
 					<h2 style = "text-align: center;"> Inserimento stanza </h2>
-					<form action = "#" th:action = "@{/addStanza}" th:object = "${stanza}" method = "post">
+					<form action = "#" th:action = "@{/admin/addStanza}" th:object = "${stanza}" method = "post">
 						<div class = "form-group">
 		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "Errore"></span>
 		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>

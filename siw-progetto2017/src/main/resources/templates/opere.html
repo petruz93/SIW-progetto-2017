@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
+<html xmlns:th = "http://www.thymeleaf.org" xmlns:sec = "http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
 		<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"/>
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
@@ -20,8 +20,8 @@
 			<div class = "col-md-4" th:if = "${not #lists.isEmpty(opere)}">
 				<table th:each = "opera : ${opere}">
 					<tr>
-						<td>
-							<form action = "#" th:action = "@{/removeOpera}" method = "post">
+						<td sec:authorize = "hasRole('ROLE_ADMIN')">
+							<form action = "#" th:action = "@{/admin/removeOpera}" method = "post">
 								<input type = "hidden" name = "id" th:value = "${opera.id}"/>
 								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
 							</form>

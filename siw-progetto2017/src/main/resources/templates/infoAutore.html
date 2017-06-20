@@ -41,7 +41,7 @@
 								<img src = "img/informazione-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: auto;"/>
 							</a>
 							<div class = "caption">
-								<form action = "#" th:action = "@{/removeOpera}" method = "post">
+								<form action = "#" th:action = "@{/admin/removeOpera}" method = "post">
 									<input type = "hidden" name = "id" th:value = "${opera.id}"/>
 									<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
 								</form>
