@@ -12,7 +12,7 @@
 		<title> Elenco stanze </title>
 	</head>
 	<body>
-		<nav class = "navbar navbar-default navbar-fixed-top">
+		<nav class = "navbar navbar-default">
 			<div th:include = "index :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid">
@@ -24,6 +24,12 @@
 							<form action = "#" th:action = "@{/admin/removeStanza}" method = "post">
 								<input type = "hidden" name = "id" th:value = "${stanza.id}"/>
 								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
+							</form>
+						</td>
+						<td sec:authorize = "hasRole('ROLE_ADMIN')">
+							<form action = "#" th:action = "@{/admin/updateStanza}" method = "get">
+								<input type = "hidden" name = "id" th:value = "${stanza.id}"/>
+								<input class = "form-control" type = "submit" name = "comando" value = "modifica"/>
 							</form>
 						</td>
 						<td>

@@ -24,7 +24,7 @@
 					<div class = "row">
 						<div class = "thumbnail col-md-3" th:each = "opera : ${stanza.opere}">
 							<p th:text = "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|" style = "text-align: center;"></p>
-							<a class = "undecorated-link" href = "/showOpera(id = ${opera.id})">
+							<a class = "undecorated-link" th:href = "@{/showOpera(id = ${opera.id})}">
 								<img src = "img/informazione-sconosciuta.jpg" alt = "Immagine sconosciuta" style = "width: auto;"/>
 							</a>
 							<div class = "caption">

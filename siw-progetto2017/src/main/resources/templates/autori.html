@@ -12,30 +12,42 @@
 		<title> Elenco autori </title>
 	</head>
 	<body>
-		<nav class = "navbar navbar-default navbar-fixed-top">
-			<div th:include = "index :: nav-content"></div>
-		</nav>
 		<div class = "container-fluid">
-			<div class = "col-md-2"></div>
-			<div class = "col-md-4" th:if = "${not #lists.isEmpty(autori)}">
-				<table>
-					<tr th:each = "autore : ${autori}">
-						<td sec:authorize = "hasRole('ROLE_ADMIN')">
-							<form action = "#" th:action = "@{/admin/removeAutore}" method = "post">
-								<input type = "hidden" name = "id" th:value = "${autore.id}"/>
-								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
-							</form>
-						</td>
-						<td>
-							<a class = "undecorated-link" th:href = "@{/showAutore(id = ${autore.id})}" th:text =  "|${autore.nome} ${autore.cognome}|"></a>
-						</td>
-					</tr>
-				</table>
+			<div class = "row">
+				<div>
+					<div class = "navbar navbar-default">
+						<div th:include = "index :: nav-content"></div>
+					</div>
+				</div>
 			</div>
-			<div class = "col-md-6"></div>
+			<div class = "row">
+				<div class = "col-md-2"></div>
+				<div class = "col-md-8" th:if = "${not #lists.isEmpty(autori)}">
+					<table>
+						<tr th:each = "autore : ${autori}">
+							<td sec:authorize = "hasRole('ROLE_ADMIN')">
+								<form action = "#" th:action = "@{/admin/removeAutore}" method = "post">
+									<input type = "hidden" name = "id" th:value = "${autore.id}"/>
+									<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
+								</form>
+							</td>
+							<td sec:authorize = "hasRole('ROLE_ADMIN')">
+								<form action = "#" th:action = "@{/admin/updateAutore}" method = "get">
+									<input type = "hidden" name = "id" th:value = "${autore.id}"/>
+									<input class = "form-control" type = "submit" name = "comando" value = "modifica"/>
+								</form>
+							</td>
+							<td>
+								<a class = "undecorated-link" th:href = "@{/showAutore(id = ${autore.id})}" th:text =  "|${autore.nome} ${autore.cognome}|"></a>
+							</td>
+						</tr>
+					</table>
+					<footer>
+						<div th:include = "index :: footer-content"></div>
+					</footer>
+				</div>
+				<div class = "col-md-2"></div>
+			</div>
 		</div>
-		<footer>
-			<div th:include = "index :: footer-content"></div>
-		</footer>
 	</body>
 </html>

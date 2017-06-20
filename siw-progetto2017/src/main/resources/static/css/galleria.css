@@ -1,5 +1,5 @@
 body {
-	padding-top: 70px;
+	/*padding-top: 70px;*/
 	background-color: #cdc1c5;
 }
 
@@ -27,7 +27,6 @@ footer {
 	bottom: 0;
 	width: 100%;
 	text-align: center;
-	background-color: #cdc0b0;
-	border: none;
+	border-top: solid 2px #777;
 	font-size: large;
 }

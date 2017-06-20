@@ -12,18 +12,24 @@
 		<title> Elenco opere </title>
 	</head>
 	<body>
-		<nav class = "navbar navbar-default navbar-fixed-top">
+		<nav class = "navbar navbar-default">
 			<div th:include = "index :: nav-content"></div>
 		</nav>
 		<div class = "container-fluid">
 			<div class = "col-md-2"></div>
-			<div class = "col-md-4" th:if = "${not #lists.isEmpty(opere)}">
-				<table th:each = "opera : ${opere}">
-					<tr>
+			<div class = "col-md-8" th:if = "${not #lists.isEmpty(opere)}">
+				<table>
+					<tr th:each = "opera : ${opere}">
 						<td sec:authorize = "hasRole('ROLE_ADMIN')">
 							<form action = "#" th:action = "@{/admin/removeOpera}" method = "post">
 								<input type = "hidden" name = "id" th:value = "${opera.id}"/>
 								<input class = "form-control" type = "submit" name = "comando" value = "cancella"/>
+							</form>
+						</td>
+						<td sec:authorize = "hasRole('ROLE_ADMIN')">
+							<form action = "#" th:action = "@{/admin/updateOpera}" method = "get">
+								<input type = "hidden" name = "id" th:value = "${opera.id}"/>
+								<input class = "form-control" type = "submit" name = "comando" value = "modifica"/>
 							</form>
 						</td>
 						<td>
@@ -31,11 +37,11 @@
 						</td>
 					</tr>
 				</table>
+				<footer>
+					<div th:include = "index :: footer-content"></div>
+				</footer>
 			</div>
-			<div class = "col-md-6"></div>
+			<div class = "col-md-2"></div>
 		</div>
-		<footer>
-			<div th:include = "index :: footer-content"></div>
-		</footer>
 	</body>
 </html>

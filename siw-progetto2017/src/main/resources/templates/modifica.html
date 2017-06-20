@@ -5,7 +5,7 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1"/>
 		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 		<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-		<link rel = "stylesheet" href = "css/galleria.css"/>
+		<link rel = "stylesheet" href = "../css/galleria.css"/>
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
 		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
 		<script src = "js/galleria.js"> </script>
@@ -15,7 +15,105 @@
 		<nav class = "navbar navbar-default navbar-fixed-top">
 			<div th:include = "index :: nav-content"></div>
 		</nav>
-		<!-- TODO -->
+		<div class = "container-fluid contenitore">
+			<div class = "row" th:if = "${formAutore}">
+				<div class = "col-md-4"></div>
+				<div class = "col-md-4">
+					<h2 style = "text-align: center;"> Modifica autore </h2>
+					<form action = "#" th:action = "@{/admin/updateAutore}" th:object = "${autore}" method = "post">
+						<div class = "form-group">
+		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Cognome* </label> <span th:if = "${#fields.hasErrors('cognome')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{cognome}" placeholder = "Cognome"/>						
+						</div>
+						<div class = "form-group">
+		                    <label> Nazione* </label> <span th:if = "${#fields.hasErrors('nazione')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{nazione}" placeholder = "Nazione"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Data di nascita* </label> <span th:if = "${#fields.hasErrors('dataNascita')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{dataNascita}" placeholder = "Data di nascita"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Data di morte </label> <span th:if = "${#fields.hasErrors('dataMorte')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{dataMorte}" placeholder = "Data di morte"/>
+						</div>
+						<div class = "form-group form-inline">
+							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
+							<input class = "form-control" type = "reset" name = "ripristina" value = "ripristina"/>
+						</div>
+					</form>
+				</div>
+			<div class = "row" th:if = "${formOpera}">
+				<div class = "col-md-4"></div>
+				<div class = "col-md-4">
+					<h2 style = "text-align: center;"> Modifica opera </h2>
+					<form action = "#" th:action = "@{/admin/updateOpera}" th:object = "${opera}" method = "post">
+						<div class = "form-group">
+		                    <label> Titolo* </label> <span th:if = "${#fields.hasErrors('titolo')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{titolo}" placeholder = "Titolo"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Anno di realizzazione* </label> <span th:if = "${#fields.hasErrors('anno')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{anno}" placeholder = "Anno di realizzazione"/>							
+						</div>
+						<div class = "form-group">
+		                    <label> Tecnica usata* </label> <span th:if = "${#fields.hasErrors('tecnica')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{tecnica}" placeholder = "Tecnica usata"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Altezza* </label> <span th:if = "${#fields.hasErrors('altezza')}" th:text = "Errore"></span>
+							<input class = "form-control" type = "text" th:field = "*{altezza}" placeholder = "Altezza"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Larghezza* </label> <span th:if = "${#fields.hasErrors('larghezza')}" th:text = "Errore"></span>
+		    				<input class = "form-control" type = "text" th:field = "*{larghezza}" placeholder = "Larghezza"/>
+						</div>
+						<div class = "form-group">
+							<label for = "elenco-autori"> Autore* </label> <span th:if = "${#fields.hasErrors('autore')}" th:text = "Errore"></span>
+							<select class = "form-control" id = "elenco-autori" th:field = "*{autore}">
+								<option selected = "selected" th:value = "null"> -- Seleziona un autore -- </option>
+								<option th:each = "autore : ${autori}" th:text = "|${autore.nome} ${autore.cognome}|" th:value = "${autore.id}"></option>
+							</select>
+						</div>
+						<div class = "form-group form-inline">
+							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
+							<input class = "form-control" type = "reset" name = "ripristina" value = "ripristina"/>
+						</div>
+					</form>
+				</div>
+				<div class = "col-md-4"></div>
+			</div>
+			<div class = "row" th:if = "${formStanza}">
+				<div class = "col-md-4"></div>
+				<div class = "col-md-4">
+					<h2 style = "text-align: center;"> Modifica stanza </h2>
+					<form action = "#" th:action = "@{/admin/updateStanza}" th:object = "${stanza}" method = "post">
+						<div class = "form-group">
+		                    <label> Nome* </label> <span th:if = "${#fields.hasErrors('nome')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{nome}" placeholder = "Nome"/>
+						</div>
+						<div class = "form-group">
+		                    <label> Descrizione* </label> <span th:if = "${#fields.hasErrors('descrizione')}" th:text = "Errore"></span>
+		                    <input class = "form-control" type = "text" th:field = "*{descrizione}" placeholder = "Descrizione"/>							
+						</div>
+						<div class = "form-group">
+							<input class = "form-control" type = "checkbox" th:each = "opera : ${opere}" th:field = "*{opere}" th:text = "|${opera.titolo} (${opera.autore.nome} ${opera.autore.cognome})|" th:value = "${opera.id}"></input>
+						</div>
+						<div class = "form-group form-inline">
+							<input class = "form-control" type = "submit" name = "invia" value = "invia"/>
+							<input class = "form-control" type = "reset" name = "ripristina" value = "ripristina"/>
+						</div>
+					</form>
+				</div>
+				<div class = "col-md-4"></div>
+			</div>
+				<div class = "col-md-4"></div>
+			</div>
+		</div>
 		<footer>
 			<div th:include = "index :: footer-content"></div>
 		</footer>
