@@ -75,7 +75,6 @@ public class StanzaController {
 		src.getOpere().remove(opera);
 		dest.getOpere().add(opera);
 		this.stanzaService.update(src, dest);
-//		return infoStanza(stanza_src, model);
 		return "redirect:/showStanza?id="+ stanza_src.toString();
 	}
 

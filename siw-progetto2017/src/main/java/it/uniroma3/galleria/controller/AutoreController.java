@@ -57,5 +57,23 @@ public class AutoreController {
 		this.autoreService.removeById(id);
 		return "redirect:/listAutori";
 	}
+	
+	@GetMapping("/admin/updateAutore")
+	public String showUpdateAutore(@RequestParam Long id, Autore autore, Model model) {
+		model.addAttribute("formAutore", true);
+		autore = this.autoreService.findById(id);
+		return "modifica";
+	}
+	
+	@PostMapping("/admin/updateAutore")
+	public String checkAutoreUpdate(@Valid @ModelAttribute Autore autore,
+									BindingResult bindingResult, Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			return showUpdateAutore(autore.getId(), autore, model);
+		}
+		this.autoreService.update(autore);
+		return "redirect:/listAutori";
+	}
 
 }

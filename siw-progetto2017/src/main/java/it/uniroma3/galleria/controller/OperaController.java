@@ -63,5 +63,24 @@ public class OperaController {
 		this.operaService.removeById(id);
 		return "redirect:/listOpere";
 	}
+	
+	@GetMapping("/admin/updateOpera")
+	public String showUpdateOpera(@RequestParam Long id, Opera opera, Model model) {
+		model.addAttribute("formOpera", true);
+		opera = this.operaService.findById(id);
+		model.addAttribute("autori", this.autoreService.findAll());
+		return "modifica";
+	}
+	
+	@PostMapping("/admin/updateOpera")
+	public String checkOperaUpdate(@Valid @ModelAttribute Opera opera,
+									BindingResult bindingResult, Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			return showUpdateOpera(opera.getId(), opera, model);
+		}
+		this.operaService.update(opera);
+		return "redirect:/listOpere";
+	}
 
 }

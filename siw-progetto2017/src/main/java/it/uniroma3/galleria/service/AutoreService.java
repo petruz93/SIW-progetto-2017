@@ -35,5 +35,10 @@ public class AutoreService {
 	public void removeById(Long id) {
 		this.autoreRepository.delete(id);
 	}
+	
+	@Transactional
+	public void update(Autore autore) {
+		this.autoreRepository.save(autore);
+	}
 
 }

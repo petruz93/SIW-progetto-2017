@@ -35,5 +35,10 @@ public class OperaService {
 	public void removeById(Long id) {
 		this.operaRepository.delete(id);
 	}
+	
+	@Transactional
+	public void update(Opera opera) {
+		this.operaRepository.save(opera);
+	}
 
 }
